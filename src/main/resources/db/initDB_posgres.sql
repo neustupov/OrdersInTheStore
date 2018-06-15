@@ -33,7 +33,7 @@ CREATE TABLE USER_ROLES
 CREATE TABLE CLIENTS
 (
   id               INTEGER PRIMARY KEY DEFAULT nextval('global_seq'),
-  first_name       VARCHAR                NOT NULL,
+  name             VARCHAR                NOT NULL,
   last_name        VARCHAR                NOT NULL,
   phone_number     INTEGER                NOT NULL,
 
@@ -44,11 +44,11 @@ CREATE TABLE ORDERS
 (
   id               INTEGER PRIMARY KEY DEFAULT nextval('global_seq'),
   client_id        INTEGER                 NOT NULL,
-  add_date_time    TIMESTAMP               NOT NULL,
+  add_date_time    TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
   prepayment       INTEGER                 NOT NULL,
   amount           INTEGER                 NOT NULL,
   residue          INTEGER                 NOT NULL,
-  ready            BOOLEAN                 NOT NULL,
+  ready            BOOLEAN DEFAULT TRUE    NOT NULL,
 
   CONSTRAINT client_id_add_date_time_idx UNIQUE (client_id, add_date_time),
   FOREIGN KEY (client_id) REFERENCES clients (id) ON DELETE CASCADE
