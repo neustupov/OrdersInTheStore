@@ -6,6 +6,7 @@ import org.hibernate.annotations.OnDeleteAction;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
+import java.util.Set;
 
 @Entity
 @Table(name = "price_requests")
@@ -34,6 +35,70 @@ public class PriceRequest extends AbstractBaseEntity{
     @Column(name = "ready", nullable = false, columnDefinition = "bool default true")
     private boolean ready;
 
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "priceRequest")
+    private Set<Product> products;
+
     public PriceRequest() {
+    }
+
+    public PriceRequest(PriceRequest p){
+        this(p.getUser(), p.getAddDateTime(), p.getOrder(), p.getClient(), p.isReady());
+    }
+
+    public PriceRequest(@NotNull User user, @NotNull LocalDateTime addDateTime, Order order, Client client, boolean ready) {
+        this.user = user;
+        this.addDateTime = addDateTime;
+        this.order = order;
+        this.client = client;
+        this.ready = ready;
+    }
+
+    public PriceRequest(Integer id, @NotNull User user, @NotNull LocalDateTime addDateTime, Order order, Client client, boolean ready) {
+        super(id);
+        this.user = user;
+        this.addDateTime = addDateTime;
+        this.order = order;
+        this.client = client;
+        this.ready = ready;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public LocalDateTime getAddDateTime() {
+        return addDateTime;
+    }
+
+    public void setAddDateTime(LocalDateTime addDateTime) {
+        this.addDateTime = addDateTime;
+    }
+
+    public Order getOrder() {
+        return order;
+    }
+
+    public void setOrder(Order order) {
+        this.order = order;
+    }
+
+    public Client getClient() {
+        return client;
+    }
+
+    public void setClient(Client client) {
+        this.client = client;
+    }
+
+    public boolean isReady() {
+        return ready;
+    }
+
+    public void setReady(boolean ready) {
+        this.ready = ready;
     }
 }
