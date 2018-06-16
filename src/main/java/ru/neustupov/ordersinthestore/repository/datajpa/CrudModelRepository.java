@@ -7,7 +7,9 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 import ru.neustupov.ordersinthestore.model.Model;
 
+@Transactional(readOnly = true)
 public interface CrudModelRepository extends JpaRepository<Model, Integer> {
+
     @Override
     @Transactional
     Model save(Model model);

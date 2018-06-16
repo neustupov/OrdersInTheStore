@@ -1,12 +1,15 @@
 package ru.neustupov.ordersinthestore.repository.datajpa;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 import ru.neustupov.ordersinthestore.model.Type;
 import ru.neustupov.ordersinthestore.repository.TypeRepository;
 
 import java.util.List;
 
+@Repository
 public class DataJpaTypeRepositoryImpl implements TypeRepository{
+
     @Autowired
     private CrudTypeRepository crudTypeRepository;
 

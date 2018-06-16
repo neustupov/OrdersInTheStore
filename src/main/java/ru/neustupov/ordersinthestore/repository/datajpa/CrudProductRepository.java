@@ -7,7 +7,9 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 import ru.neustupov.ordersinthestore.model.Product;
 
+@Transactional(readOnly = true)
 public interface CrudProductRepository extends JpaRepository<Product, Integer> {
+
     @Override
     @Transactional
     Product save(Product product);
