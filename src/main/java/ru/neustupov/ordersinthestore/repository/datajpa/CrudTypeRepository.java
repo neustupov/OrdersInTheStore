@@ -7,7 +7,9 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 import ru.neustupov.ordersinthestore.model.Type;
 
+@Transactional(readOnly = true)
 public interface CrudTypeRepository extends JpaRepository<Type, Integer> {
+
     @Override
     @Transactional
     Type save(Type type);

@@ -9,6 +9,7 @@ import java.util.List;
 
 @Repository
 public class DataJpaPriceRequestRepositoryImpl implements PriceRequestRepository{
+
     @Autowired
     private CrudPriceRequestRepository crudPriceRequestRepository;
 
