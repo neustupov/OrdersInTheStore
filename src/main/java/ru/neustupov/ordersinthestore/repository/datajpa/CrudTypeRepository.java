@@ -5,15 +5,15 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
-import ru.neustupov.ordersinthestore.model.Client;
+import ru.neustupov.ordersinthestore.model.Type;
 
-public interface CrudClientRepository extends JpaRepository<Client, Integer> {
+public interface CrudTypeRepository extends JpaRepository<Type, Integer> {
     @Override
     @Transactional
-    Client save(Client client);
+    Type save(Type type);
 
     @Transactional
-    @Query("DELETE FROM Client c WHERE c.id=:id")
+    @Query("DELETE FROM Type t WHERE t.id=:id")
     @Modifying
     int delete(@Param("id") int id);
 }
