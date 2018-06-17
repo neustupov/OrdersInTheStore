@@ -20,6 +20,7 @@ public class Client extends AbstractNamedEntity {
     private String lastName;
 
     @Column(name = "phone_number", nullable = false)
+    @Size(min = 10, max = 10)
     @NotNull
     private int phoneNumber;
 

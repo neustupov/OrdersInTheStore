@@ -3,16 +3,17 @@ package ru.neustupov.ordersinthestore.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 import ru.neustupov.ordersinthestore.model.Client;
 import ru.neustupov.ordersinthestore.repository.ClientRepository;
-import ru.neustupov.ordersinthestore.repository.ModelRepository;
 import ru.neustupov.ordersinthestore.util.exception.NotFoundException;
 
 import java.util.List;
 
 import static ru.neustupov.ordersinthestore.util.ValidationUtil.checkNotFoundWithId;
 
+@Service
 public class ClientServiceImpl implements ClientService {
 
     private final ClientRepository repository;
