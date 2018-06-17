@@ -24,39 +24,47 @@ public class Product extends AbstractBaseEntity{
     @NotNull
     private int price;
 
-    @OneToOne
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "type_id", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
-    @PrimaryKeyJoinColumn
     private Type type;
 
-    @OneToOne
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "model_id", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
-    @PrimaryKeyJoinColumn
     private Model model;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "brand_id", nullable = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    private Brand brand;
 
     public Product() {
     }
 
     public Product(Product p){
-        this(p.getPriceRequest(), p.getAddDate(), p.getPrice(), p.getType(), p.getModel());
+        this(p.getPriceRequest(), p.getAddDate(), p.getPrice(), p.getType(), p.getModel(), p.getBrand());
     }
 
-    public Product(PriceRequest priceRequest, @NotNull LocalDate addDate, @NotNull int price, Type type, Model model) {
+    public Product(PriceRequest priceRequest, @NotNull LocalDate addDate, @NotNull int price, Type type, Model model,
+                   Brand brand) {
         this.priceRequest = priceRequest;
         this.addDate = addDate;
         this.price = price;
         this.type = type;
         this.model = model;
+        this.brand = brand;
     }
 
     public Product(Integer id, PriceRequest priceRequest, @NotNull LocalDate addDate, @NotNull int price, Type type,
-                   Model model) {
+                   Model model, Brand brand) {
         super(id);
         this.priceRequest = priceRequest;
         this.addDate = addDate;
         this.price = price;
         this.type = type;
         this.model = model;
+        this.brand = brand;
     }
 
     public PriceRequest getPriceRequest() {
@@ -97,5 +105,13 @@ public class Product extends AbstractBaseEntity{
 
     public void setModel(Model model) {
         this.model = model;
+    }
+
+    public Brand getBrand() {
+        return brand;
+    }
+
+    public void setBrand(Brand brand) {
+        this.brand = brand;
     }
 }

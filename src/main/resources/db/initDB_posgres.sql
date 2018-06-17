@@ -1,4 +1,5 @@
 DROP TABLE IF EXISTS types;
+DROP TABLE IF EXISTS brands;
 DROP TABLE IF EXISTS models;
 DROP TABLE IF EXISTS products;
 DROP TABLE IF EXISTS price_requests;
@@ -35,7 +36,7 @@ CREATE TABLE CLIENTS
   id               INTEGER PRIMARY KEY DEFAULT nextval('global_seq'),
   name             VARCHAR                NOT NULL,
   last_name        VARCHAR                NOT NULL,
-  phone_number     INTEGER                NOT NULL,
+  phone_number     BIGINT                 NOT NULL,
 
   CONSTRAINT phone_number_idx UNIQUE (phone_number)
 );
@@ -47,7 +48,6 @@ CREATE TABLE ORDERS
   add_date_time    TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
   prepayment       INTEGER                 NOT NULL,
   amount           INTEGER                 NOT NULL,
-  residue          INTEGER                 NOT NULL,
   ready            BOOLEAN DEFAULT TRUE    NOT NULL,
 
   CONSTRAINT client_id_add_date_time_idx UNIQUE (client_id, add_date_time),
@@ -69,33 +69,39 @@ CREATE TABLE PRICE_REQUESTS
   FOREIGN KEY (client_id) REFERENCES clients (id) ON DELETE CASCADE
 );
 
+CREATE TABLE TYPES
+(
+  id                      INTEGER PRIMARY KEY DEFAULT nextval('global_seq'),
+  name                    VARCHAR,
+
+  CONSTRAINT type_name_idx UNIQUE (name)
+);
+
+CREATE TABLE MODELS
+(
+  id                      INTEGER PRIMARY KEY DEFAULT nextval('global_seq'),
+  name                    VARCHAR,
+
+  CONSTRAINT model_name_idx UNIQUE (name)
+);
+
+CREATE TABLE BRANDS
+(
+  id                      INTEGER PRIMARY KEY DEFAULT nextval('global_seq'),
+  name                    VARCHAR,
+
+  CONSTRAINT brands_name_idx UNIQUE (name)
+);
+
 CREATE TABLE PRODUCTS
 (
   id                      INTEGER PRIMARY KEY DEFAULT nextval('global_seq'),
   price_request_id        INTEGER                 NOT NULL,
   add_date                DATE DEFAULT CURRENT_DATE      NOT NULL,
   price                   INTEGER,
+  type_id                 INTEGER                 NOT NULL,
+  model_id                INTEGER                 NOT NULL,
+  brand_id                INTEGER                 NOT NULL,
 
-  CONSTRAINT add_date_idx UNIQUE (add_date),
   FOREIGN KEY (price_request_id) REFERENCES price_requests (id) ON DELETE CASCADE
-);
-
-CREATE TABLE TYPES
-(
-  id                      INTEGER PRIMARY KEY DEFAULT nextval('global_seq'),
-  product_id              INTEGER                 NOT NULL,
-  name                    VARCHAR,
-
-  CONSTRAINT type_name_idx UNIQUE (name),
-  FOREIGN KEY (product_id) REFERENCES products (id) ON DELETE CASCADE
-);
-
-CREATE TABLE MODELS
-(
-  id                      INTEGER PRIMARY KEY DEFAULT nextval('global_seq'),
-  product_id              INTEGER                 NOT NULL,
-  name                    VARCHAR,
-
-  CONSTRAINT model_name_idx UNIQUE (name),
-  FOREIGN KEY (product_id) REFERENCES products (id) ON DELETE CASCADE
 );

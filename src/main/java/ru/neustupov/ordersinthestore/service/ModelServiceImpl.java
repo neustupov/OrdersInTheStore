@@ -3,6 +3,7 @@ package ru.neustupov.ordersinthestore.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 import ru.neustupov.ordersinthestore.model.Model;
 import ru.neustupov.ordersinthestore.repository.ModelRepository;
@@ -12,6 +13,7 @@ import java.util.List;
 
 import static ru.neustupov.ordersinthestore.util.ValidationUtil.checkNotFoundWithId;
 
+@Service
 public class ModelServiceImpl implements ModelService {
 
     private final ModelRepository repository;

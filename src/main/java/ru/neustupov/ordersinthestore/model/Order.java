@@ -29,10 +29,6 @@ public class Order extends AbstractBaseEntity {
     @NotNull
     private int amount;
 
-    @Column(name = "residue", nullable = false)
-    @NotNull
-    private int residue;
-
     @Column(name = "ready", nullable = false, columnDefinition = "bool default true")
     private int ready;
 
@@ -43,29 +39,27 @@ public class Order extends AbstractBaseEntity {
     }
 
     public Order(Order o) {
-        this(o.getClient(), o.getAddDateTime(), o.getPrepayment(), o.getAmount(), o.getResidue(), o.getReady()
+        this(o.getClient(), o.getAddDateTime(), o.getPrepayment(), o.getAmount(), o.getReady()
                 , o.getPriceRequests());
     }
 
     public Order(Client client, @NotNull LocalDateTime addDateTime, @NotNull int prepayment, @NotNull int amount,
-                 @NotNull int residue, int ready, Set<PriceRequest> priceRequests) {
+                 int ready, Set<PriceRequest> priceRequests) {
         this.client = client;
         this.addDateTime = addDateTime;
         this.prepayment = prepayment;
         this.amount = amount;
-        this.residue = residue;
         this.ready = ready;
         this.priceRequests = priceRequests;
     }
 
     public Order(Integer id, Client client, @NotNull LocalDateTime addDateTime, @NotNull int prepayment,
-                 @NotNull int amount, @NotNull int residue, int ready, Set<PriceRequest> priceRequests) {
+                 @NotNull int amount, int ready, Set<PriceRequest> priceRequests) {
         super(id);
         this.client = client;
         this.addDateTime = addDateTime;
         this.prepayment = prepayment;
         this.amount = amount;
-        this.residue = residue;
         this.ready = ready;
         this.priceRequests = priceRequests;
     }
@@ -100,14 +94,6 @@ public class Order extends AbstractBaseEntity {
 
     public void setAmount(int amount) {
         this.amount = amount;
-    }
-
-    public int getResidue() {
-        return residue;
-    }
-
-    public void setResidue(int residue) {
-        this.residue = residue;
     }
 
     public int getReady() {
