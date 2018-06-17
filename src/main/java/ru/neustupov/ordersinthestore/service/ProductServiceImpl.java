@@ -6,7 +6,6 @@ import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 import ru.neustupov.ordersinthestore.model.Product;
-import ru.neustupov.ordersinthestore.model.Type;
 import ru.neustupov.ordersinthestore.repository.ProductRepository;
 import ru.neustupov.ordersinthestore.util.exception.NotFoundException;
 
