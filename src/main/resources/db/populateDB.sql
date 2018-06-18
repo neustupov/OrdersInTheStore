@@ -10,7 +10,7 @@ DELETE FROM users;
 ALTER SEQUENCE global_seq RESTART WITH 100000;
 
 INSERT INTO USERS (name, email, password) VALUES
-  ('Seller', 'seller@yandex.ru', '{noop}password'),
+  ('Seller', 'seller@yandex.ru', '{noop}seller'),
   ('Manager', 'manager@yandex.ru', '{noop}manager'),
   ('Admin', 'admin@yandex.ru','{noop}admin');
 

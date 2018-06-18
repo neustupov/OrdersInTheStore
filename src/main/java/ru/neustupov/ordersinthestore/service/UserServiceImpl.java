@@ -12,11 +12,13 @@ import org.springframework.util.Assert;
 import ru.neustupov.ordersinthestore.AuthorizedUser;
 import ru.neustupov.ordersinthestore.model.User;
 import ru.neustupov.ordersinthestore.repository.UserRepository;
+import ru.neustupov.ordersinthestore.to.UserTo;
 import ru.neustupov.ordersinthestore.util.exception.NotFoundException;
 
 import java.util.List;
 
 import static ru.neustupov.ordersinthestore.util.UserUtil.prepareToSave;
+import static ru.neustupov.ordersinthestore.util.UserUtil.updateFromTo;
 import static ru.neustupov.ordersinthestore.util.ValidationUtil.checkNotFound;
 import static ru.neustupov.ordersinthestore.util.ValidationUtil.checkNotFoundWithId;
 
@@ -56,6 +58,14 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     public void update(User user) {
         Assert.notNull(user, "user must not be null");
         checkNotFoundWithId(repository.save(prepareToSave(user, passwordEncoder)), user.getId());
+    }
+
+    @CacheEvict(value = "users", allEntries = true)
+    @Transactional
+    @Override
+    public void update(UserTo userTo) {
+        User user = updateFromTo(get(userTo.getId()), userTo);
+        repository.save(prepareToSave(user, passwordEncoder));
     }
 
     @Cacheable("users")
