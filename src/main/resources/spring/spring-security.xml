@@ -7,12 +7,12 @@
     <http pattern="/resources/**" security="none"/>
     <http pattern="/webjars/**" security="none"/>
 
-    <http pattern="/rest/**" use-expressions="true" name="restSecurityFilterChain" create-session="stateless">
+    <!--<http pattern="/rest/**" use-expressions="true" name="restSecurityFilterChain" create-session="stateless">
         <http-basic/>
         <intercept-url pattern="/rest/admin/**" access="hasRole('ROLE_ADMIN')"/>
         <intercept-url pattern="/**" access="isAuthenticated()"/>
         <csrf disabled="true"/>
-    </http>
+    </http>-->
 
     <beans:bean id="passwordEncoder" factory-method="createDelegatingPasswordEncoder" class="org.springframework.security.crypto.factory.PasswordEncoderFactories"/>
 
@@ -23,13 +23,10 @@
         <intercept-url pattern="/**" access="isAuthenticated()"/>
         <form-login login-page="/login"
                     authentication-failure-url="/login?error=true"
-                    login-processing-url="/spring_security_check"
-                    authentication-success-handler-ref="customAuthenticationHandler"/>
+                    login-processing-url="/spring_security_check"/>
         <logout logout-success-url="/login"/>
         <!--<csrf disabled="true"/>-->
     </http>
-
-    <beans:bean id="customAuthenticationHandler" class="ru.neustupov.votingforrestaurants.util.CustomAuthenticationHandler"/>
 
     <authentication-manager>
         <authentication-provider user-service-ref="userService">

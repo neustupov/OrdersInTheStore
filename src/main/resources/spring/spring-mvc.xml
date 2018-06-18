@@ -13,7 +13,7 @@
        http://www.springframework.org/schema/security
        http://www.springframework.org/schema/security/spring-security.xsd">
 
-    <bean class="ru.neustupov.votingforrestaurants.web.json.JacksonObjectMapper" id="objectMapper"
+    <bean class="ru.neustupov.ordersinthestore.web.json.JacksonObjectMapper" id="objectMapper"
           factory-method="getMapper"/>
 
     <!-- serve static resources (*.html, ...) from src/main/webapp/ -->
@@ -47,7 +47,7 @@
     <bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource"
           p:cacheSeconds="5"
           p:defaultEncoding="UTF-8">
-        <property name="basenames" value="file:///#{systemEnvironment['VOTES']}/config/messages/app"/>
+        <property name="basenames" value="file:///#{systemEnvironment['ORDERS']}/config/messages/app"/>
         <property name="fallbackToSystemLocale" value="false"/>
     </bean>
 
