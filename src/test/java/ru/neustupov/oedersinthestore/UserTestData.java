@@ -18,8 +18,8 @@ import static ru.neustupov.ordersinthestore.web.json.JsonUtil.writeIgnoreProps;
 public class UserTestData {
 
     public static final int SELLER_ID = START_SEQ;
-    public static final int ADMIN_ID = START_SEQ + 1;
-    public static final int MANAGER_ID = START_SEQ + 2;
+    public static final int MANAGER_ID = START_SEQ + 1;
+    public static final int ADMIN_ID = START_SEQ + 2;
 
     public static final User SELLER = new User(SELLER_ID, "Seller", "seller@yandex.ru", "seller", Date.from(Instant.now()), EnumSet.of(Role.ROLE_SELLER));
     public static final User MANAGER = new User(MANAGER_ID, "Manager", "manager@yandex.ru", "manager", Date.from(Instant.now()), EnumSet.of(Role.ROLE_MANAGER));

@@ -15,6 +15,7 @@ import javax.validation.ConstraintViolationException;
 import java.time.Instant;
 import java.util.Collections;
 import java.util.Date;
+import java.util.EnumSet;
 import java.util.List;
 
 import static ru.neustupov.oedersinthestore.UserTestData.*;
@@ -37,7 +38,7 @@ public class UserServiceTest extends AbstractServiceTest {
         User newUser = new User(null, "New", "new@yandex.ru", "newPass", Date.from(Instant.now()), Collections.singleton(Role.ROLE_SELLER));
         User created = service.create(newUser);
         newUser.setId(created.getId());
-        assertMatch(service.getAll(), ADMIN, newUser, SELLER, MANAGER);
+        assertMatch(service.getAll(), ADMIN, MANAGER, newUser, SELLER);
     }
 
     @Test(expected = DataAccessException.class)
@@ -79,19 +80,30 @@ public class UserServiceTest extends AbstractServiceTest {
     @Test
     public void getAll() throws Exception {
         List<User> all = service.getAll();
-        assertMatch(all, ADMIN, SELLER, MANAGER);
+        assertMatch(all, ADMIN, MANAGER, SELLER);
     }
 
-    /*//TODO need repair password validation
+    //TODO need repair password validation
     @Test
     public void testValidation() throws Exception {
-        validateRootCause(() -> service.create(new User(100500, "   ", "new@yandex.ru","Password", Date.from(Instant.now()), EnumSet.of(Role.ROLE_USER))), ConstraintViolationException.class);
-        validateRootCause(() -> service.create(new User(100500, "TestUser", "yandex.ru","Password", Date.from(Instant.now()), EnumSet.of(Role.ROLE_USER))), ConstraintViolationException.class);
-        validateRootCause(() -> service.create(new User(100500, "TestUser", "new@yandex.ru","", Date.from(Instant.now()), EnumSet.of(Role.ROLE_USER))), ConstraintViolationException.class);
-       // validateRootCause(() -> service.create(new User(100500, "TestUser", "new@yandex.ru","Pass", Date.from(Instant.now()), EnumSet.of(Role.ROLE_USER))), ConstraintViolationException.class);
-       // validateRootCause(() -> service.create(new User(100500, "TestUser", "new@yandex.ru","1234567890qwertyuiopsdfghjklzxcvbnmnbvcxzasdfghjklpoiuytrewq12345qwertyuioplkjhgfdsazxcvbnmnbvcxzasdf", Date.from(Instant.now()), EnumSet.of(Role.ROLE_USER))), ConstraintViolationException.class);
-        validateRootCause(() -> service.create(new User(100500, "TestUser", "new@yandex.ru","Password", null, EnumSet.of(Role.ROLE_USER))), ConstraintViolationException.class);
-    }*/
+        validateRootCause(() -> service.create(new User(100500, "   ", "new@yandex.ru",
+                        "Password", Date.from(Instant.now()), EnumSet.of(Role.ROLE_SELLER))),
+                ConstraintViolationException.class);
+        validateRootCause(() -> service.create(new User(100500, "TestUser", "yandex.ru",
+                        "Password", Date.from(Instant.now()), EnumSet.of(Role.ROLE_SELLER))),
+                ConstraintViolationException.class);
+        validateRootCause(() -> service.create(new User(100500, "TestUser", "new@yandex.ru",
+                        "", Date.from(Instant.now()), EnumSet.of(Role.ROLE_SELLER))),
+                ConstraintViolationException.class);
+        //validateRootCause(() -> service.create(new User(100500, "TestUser", "new@yandex.ru",
+        //        "Pass", Date.from(Instant.now()), EnumSet.of(Role.ROLE_SELLER))),
+        //        ConstraintViolationException.class);
+        //validateRootCause(() -> service.create(new User(100500, "TestUser", "new@yandex.ru",
+        //        "1234567890qwertyuiopsdfghjklzxcvbnmnbvcxzasdfghjklpoiuytrewq12345qwertyuioplkjhgfdsazxcvbnmnbvcxzasdf",
+        //        Date.from(Instant.now()), EnumSet.of(Role.ROLE_SELLER))), ConstraintViolationException.class);
+        validateRootCause(() -> service.create(new User(100500, "TestUser", "new@yandex.ru",
+                "Password", null, EnumSet.of(Role.ROLE_SELLER))), ConstraintViolationException.class);
+    }
 
     @Test
     public void testEnable() {

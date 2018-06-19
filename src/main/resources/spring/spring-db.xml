@@ -32,6 +32,7 @@
                 <entry key="#{T(org.hibernate.cfg.AvailableSettings).FORMAT_SQL}" value="${hibernate.format_sql}"/>
                 <entry key="#{T(org.hibernate.cfg.AvailableSettings).USE_SQL_COMMENTS}"
                        value="${hibernate.use_sql_comments}"/>
+                <entry key="#{T(org.hibernate.cfg.AvailableSettings).DIALECT}" value="${hibernate.dialect}"/>
                 <entry key="javax.persistence.validation.group.pre-persist"
                        value="ru.neustupov.ordersinthestore.View$Persist"/>
                 <entry key="javax.persistence.validation.group.pre-update"
