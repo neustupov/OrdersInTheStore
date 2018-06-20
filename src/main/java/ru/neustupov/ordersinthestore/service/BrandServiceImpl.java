@@ -5,8 +5,8 @@ import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
-import ru.neustupov.ordersinthestore.model.Type;
-import ru.neustupov.ordersinthestore.repository.TypeRepository;
+import ru.neustupov.ordersinthestore.model.Brand;
+import ru.neustupov.ordersinthestore.repository.BrandRepository;
 import ru.neustupov.ordersinthestore.util.exception.NotFoundException;
 
 import java.util.List;
@@ -14,41 +14,41 @@ import java.util.List;
 import static ru.neustupov.ordersinthestore.util.ValidationUtil.checkNotFoundWithId;
 
 @Service
-public class TypeServiceImpl implements TypeService{
+public class BrandServiceImpl implements BrandService{
 
-    private final TypeRepository repository;
+    private final BrandRepository repository;
 
     @Autowired
-    public TypeServiceImpl(TypeRepository repository){
+    public BrandServiceImpl(BrandRepository repository){
         this.repository = repository;
     }
 
     @Override
-    public Type get(int id) throws NotFoundException {
+    public Brand get(int id) throws NotFoundException {
         return checkNotFoundWithId(repository.get(id), id);
     }
 
-    @Cacheable("types")
+    @Cacheable("brands")
     @Override
-    public List<Type> getAll() {
+    public List<Brand> getAll() {
         return repository.getAll();
     }
 
-    @CacheEvict(value = "types", allEntries = true)
+    @CacheEvict(value = "brands", allEntries = true)
     @Override
-    public Type create(Type type) {
-        Assert.notNull(type, "type must not be null");
-        return repository.save(type);
+    public Brand create(Brand brand) {
+        Assert.notNull(brand, "brand must not be null");
+        return repository.save(brand);
     }
 
-    @CacheEvict(value = "types", allEntries = true)
+    @CacheEvict(value = "brands", allEntries = true)
     @Override
-    public void update(Type type) {
-        Assert.notNull(type, "type must not be null");
-        checkNotFoundWithId(repository.save(type), type.getId());
+    public void update(Brand brand) {
+        Assert.notNull(brand, "brand must not be null");
+        checkNotFoundWithId(repository.save(brand), brand.getId());
     }
 
-    @CacheEvict(value = "types", allEntries = true)
+    @CacheEvict(value = "brands", allEntries = true)
     @Override
     public void delete(int id) throws NotFoundException {
         checkNotFoundWithId(repository.delete(id), id);

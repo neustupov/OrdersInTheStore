@@ -7,6 +7,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.math.BigInteger;
 import java.util.Set;
 
 @Entity
@@ -22,7 +23,7 @@ public class Client extends AbstractNamedEntity {
     @Column(name = "phone_number", nullable = false)
     @Size(min = 10, max = 10)
     @NotNull
-    private int phoneNumber;
+    private Long phoneNumber;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "client")
     private Set<PriceRequest> priceRequests;
@@ -38,7 +39,7 @@ public class Client extends AbstractNamedEntity {
     }
 
     public Client(@NotBlank @Size(min = 2, max = 120) @SafeHtml(groups = {View.Web.class}) String lastName,
-                  @NotNull int phoneNumber, Set<PriceRequest> priceRequests, Set<Order> orders) {
+                  @NotNull Long phoneNumber, Set<PriceRequest> priceRequests, Set<Order> orders) {
         this.lastName = lastName;
         this.phoneNumber = phoneNumber;
         this.priceRequests = priceRequests;
@@ -46,8 +47,8 @@ public class Client extends AbstractNamedEntity {
     }
 
     public Client(Integer id, String name, @NotBlank @Size(min = 2, max = 120)
-    @SafeHtml(groups = {View.Web.class}) String lastName, @NotNull int phoneNumber, Set<PriceRequest> priceRequests,
-                  Set<Order> orders) {
+    @SafeHtml(groups = {View.Web.class}) String lastName, @NotNull Long phoneNumber,
+                  Set<PriceRequest> priceRequests, Set<Order> orders) {
         super(id, name);
         this.lastName = lastName;
         this.phoneNumber = phoneNumber;
@@ -63,11 +64,11 @@ public class Client extends AbstractNamedEntity {
         this.lastName = lastName;
     }
 
-    public int getPhoneNumber() {
+    public Long getPhoneNumber() {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(int phoneNumber) {
+    public void setPhoneNumber(Long phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 
