@@ -1,4 +1,4 @@
-package ru.neustupov.oedersinthestore.service;
+package ru.neustupov.ordersinthestore.service;
 
 import org.junit.Assert;
 import org.junit.Before;
@@ -8,7 +8,6 @@ import org.springframework.cache.CacheManager;
 import org.springframework.dao.DataAccessException;
 import ru.neustupov.ordersinthestore.model.Role;
 import ru.neustupov.ordersinthestore.model.User;
-import ru.neustupov.ordersinthestore.service.UserService;
 import ru.neustupov.ordersinthestore.util.exception.NotFoundException;
 
 import javax.validation.ConstraintViolationException;
@@ -18,7 +17,7 @@ import java.util.Date;
 import java.util.EnumSet;
 import java.util.List;
 
-import static ru.neustupov.oedersinthestore.UserTestData.*;
+import static ru.neustupov.ordersinthestore.UserTestData.*;
 
 public class UserServiceTest extends AbstractServiceTest {
 

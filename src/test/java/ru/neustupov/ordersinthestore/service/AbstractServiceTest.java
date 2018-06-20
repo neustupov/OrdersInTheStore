@@ -1,4 +1,4 @@
-package ru.neustupov.oedersinthestore.service;
+package ru.neustupov.ordersinthestore.service;
 
 import org.junit.Assert;
 import org.junit.runner.RunWith;

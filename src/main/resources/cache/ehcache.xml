@@ -18,10 +18,11 @@
     </cache-template>
 
     <cache alias="users" uses-template="singleNonExpiryCache"/>
-    <cache alias="type" uses-template="singleNonExpiryCache"/>
-    <cache alias="product" uses-template="singleNonExpiryCache"/>
-    <cache alias="priceRequest" uses-template="singleNonExpiryCache"/>
-    <cache alias="order" uses-template="singleNonExpiryCache"/>
-    <cache alias="model" uses-template="singleNonExpiryCache"/>
-    <cache alias="client" uses-template="singleNonExpiryCache"/>
+    <cache alias="types" uses-template="singleNonExpiryCache"/>
+    <cache alias="products" uses-template="singleNonExpiryCache"/>
+    <cache alias="priceRequests" uses-template="singleNonExpiryCache"/>
+    <cache alias="orders" uses-template="singleNonExpiryCache"/>
+    <cache alias="models" uses-template="singleNonExpiryCache"/>
+    <cache alias="brands" uses-template="singleNonExpiryCache"/>
+    <cache alias="clients" uses-template="singleNonExpiryCache"/>
 </config>

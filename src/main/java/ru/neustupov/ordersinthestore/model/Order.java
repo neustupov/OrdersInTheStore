@@ -30,7 +30,7 @@ public class Order extends AbstractBaseEntity {
     private int amount;
 
     @Column(name = "ready", nullable = false, columnDefinition = "bool default true")
-    private int ready;
+    private boolean ready;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "order")
     private Set<PriceRequest> priceRequests;
@@ -39,12 +39,12 @@ public class Order extends AbstractBaseEntity {
     }
 
     public Order(Order o) {
-        this(o.getClient(), o.getAddDateTime(), o.getPrepayment(), o.getAmount(), o.getReady()
+        this(o.getClient(), o.getAddDateTime(), o.getPrepayment(), o.getAmount(), o.isReady()
                 , o.getPriceRequests());
     }
 
     public Order(Client client, @NotNull LocalDateTime addDateTime, @NotNull int prepayment, @NotNull int amount,
-                 int ready, Set<PriceRequest> priceRequests) {
+                 boolean ready, Set<PriceRequest> priceRequests) {
         this.client = client;
         this.addDateTime = addDateTime;
         this.prepayment = prepayment;
@@ -54,7 +54,7 @@ public class Order extends AbstractBaseEntity {
     }
 
     public Order(Integer id, Client client, @NotNull LocalDateTime addDateTime, @NotNull int prepayment,
-                 @NotNull int amount, int ready, Set<PriceRequest> priceRequests) {
+                 @NotNull int amount, boolean ready, Set<PriceRequest> priceRequests) {
         super(id);
         this.client = client;
         this.addDateTime = addDateTime;
@@ -96,11 +96,11 @@ public class Order extends AbstractBaseEntity {
         this.amount = amount;
     }
 
-    public int getReady() {
+    public boolean isReady() {
         return ready;
     }
 
-    public void setReady(int ready) {
+    public void setReady(boolean ready) {
         this.ready = ready;
     }
 
