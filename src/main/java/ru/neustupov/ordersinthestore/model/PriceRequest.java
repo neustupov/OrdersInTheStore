@@ -42,7 +42,7 @@ public class PriceRequest extends AbstractBaseEntity{
     }
 
     public PriceRequest(PriceRequest p){
-        this(p.getUser(), p.getAddDateTime(), p.getOrder(), p.getClient(), p.isReady());
+        this(p.getId(), p.getUser(), p.getAddDateTime(), p.getOrder(), p.getClient(), p.isReady());
     }
 
     public PriceRequest(@NotNull User user, @NotNull LocalDateTime addDateTime, Order order, Client client, boolean ready) {

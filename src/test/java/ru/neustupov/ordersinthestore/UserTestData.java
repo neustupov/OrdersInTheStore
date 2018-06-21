@@ -9,6 +9,7 @@ import java.time.Instant;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.EnumSet;
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
@@ -24,6 +25,8 @@ public class UserTestData {
     public static final User SELLER = new User(SELLER_ID, "Seller", "seller@yandex.ru", "seller", Date.from(Instant.now()), EnumSet.of(Role.ROLE_SELLER));
     public static final User MANAGER = new User(MANAGER_ID, "Manager", "manager@yandex.ru", "manager", Date.from(Instant.now()), EnumSet.of(Role.ROLE_MANAGER));
     public static final User ADMIN = new User(ADMIN_ID, "Admin", "admin@yandex.ru", "admin", Date.from(Instant.now()), EnumSet.of(Role.ROLE_ADMIN));
+
+    public static final List<User> USERS = Arrays.asList(SELLER, MANAGER, ADMIN);
 
     public static void assertMatch(User actual, User expected) {
         assertThat(actual).isEqualToIgnoringGivenFields(expected, "registered", "roles", "priceRequests", "password");

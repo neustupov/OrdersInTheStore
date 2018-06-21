@@ -4,18 +4,23 @@ import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.CacheManager;
-import org.springframework.dao.DataAccessException;
+import ru.neustupov.ordersinthestore.model.Product;
 import ru.neustupov.ordersinthestore.util.exception.NotFoundException;
 
-import javax.validation.ConstraintViolationException;
+import java.time.LocalDate;
 import java.util.List;
 
-import static ru.neustupov.ordersinthestore.TypeTestData.assertMatch;
+import static ru.neustupov.ordersinthestore.BrandTestData.SAMSUNG;
+import static ru.neustupov.ordersinthestore.ModelTestData.F;
+import static ru.neustupov.ordersinthestore.PriceRequestTestData.PRICE_REQUEST_ONE;
+import static ru.neustupov.ordersinthestore.ProductTestData.*;
+import static ru.neustupov.ordersinthestore.TypeTestData.TV;
+import static ru.neustupov.ordersinthestore.ProductTestData.assertMatch;
 
 public class ProductServiceTest extends AbstractServiceTest{
 
     @Autowired
-    TypeService service;
+    ProductService service;
 
     @Autowired
     private CacheManager cacheManager;
@@ -27,21 +32,18 @@ public class ProductServiceTest extends AbstractServiceTest{
 
     @Test
     public void create() throws Exception {
-        Type newType = new Type(null, "NewType");
-        Type created = service.create(newType);
-        newType.setId(created.getId());
-        assertMatch(service.getAll(), TV, WASHING_MACHINE, MOUSE, newType);
-    }
-
-    @Test(expected = DataAccessException.class)
-    public void duplicateNameCreate() throws Exception {
-        service.create(new Type(null, "TV"));
+        Product newProduct = new Product(null, PRICE_REQUEST_ONE,
+                LocalDate.of(2018, 1, 10), 10000, TV, F, SAMSUNG);
+        Product created = service.create(newProduct);
+        newProduct.setId(created.getId());
+        assertMatch(service.getAll(), TV_SAMSUNG_40F6101, WM_LG_10B81, TV_AKAI_21D210, MOUSE_RAZER_MAXIMA,
+                newProduct);
     }
 
     @Test
     public void delete() throws Exception {
-        service.delete(TV_ID);
-        assertMatch(service.getAll(), WASHING_MACHINE, MOUSE);
+        service.delete(TV_SAMSUNG_40F6101_ID);
+        assertMatch(service.getAll(), WM_LG_10B81, TV_AKAI_21D210, MOUSE_RAZER_MAXIMA);
     }
 
     @Test(expected = NotFoundException.class)
@@ -51,8 +53,8 @@ public class ProductServiceTest extends AbstractServiceTest{
 
     @Test
     public void get() throws Exception {
-        Type type = service.get(TV_ID);
-        assertMatch(type, TV);
+        Product product = service.get(TV_AKAI_21D210_ID);
+        assertMatch(product, TV_AKAI_21D210);
     }
 
     @Test(expected = NotFoundException.class)
@@ -62,21 +64,15 @@ public class ProductServiceTest extends AbstractServiceTest{
 
     @Test
     public void update() throws Exception {
-        Type updated = new Type(WASHING_MACHINE);
-        updated.setName("UpdatedName");
+        Product updated = new Product(WM_LG_10B81);
+        updated.setPrice(100500);
         service.update(updated);
-        assertMatch(service.get(WASHING_MACHINE_ID), updated);
+        assertMatch(service.get(WM_LG_10B81_ID), updated);
     }
 
     @Test
     public void getAll() throws Exception {
-        List<Type> all = service.getAll();
-        assertMatch(all, TV, WASHING_MACHINE, MOUSE);
-    }
-
-    @Test
-    public void testValidation() throws Exception {
-        validateRootCause(() -> service.create(new Type(100500, "   ")),
-                ConstraintViolationException.class);
+        List<Product> all = service.getAll();
+        assertMatch(all, TV_SAMSUNG_40F6101, WM_LG_10B81, TV_AKAI_21D210, MOUSE_RAZER_MAXIMA);
     }
 }

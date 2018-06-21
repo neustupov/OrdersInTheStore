@@ -8,7 +8,6 @@ import org.springframework.dao.DataAccessException;
 import ru.neustupov.ordersinthestore.model.Order;
 import ru.neustupov.ordersinthestore.util.exception.NotFoundException;
 
-import javax.validation.ConstraintViolationException;
 import java.time.LocalDateTime;
 import java.util.List;
 

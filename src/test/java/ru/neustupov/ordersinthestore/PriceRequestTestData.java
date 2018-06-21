@@ -26,20 +26,21 @@ public class PriceRequestTestData {
     public static final int PRICE_REQUEST_FOUR_ID = START_SEQ + 15;
 
     public static final PriceRequest PRICE_REQUEST_ONE = new PriceRequest(PRICE_REQUEST_ONE_ID, SELLER,
-            LocalDateTime.of(2018, 1, 7, 10, 0, 0 ), ORDER_ONE,
+            LocalDateTime.of(2018, 1, 7, 10, 0, 0), ORDER_ONE,
             ANDREY_IVANOV, true);
     public static final PriceRequest PRICE_REQUEST_TWO = new PriceRequest(PRICE_REQUEST_TWO_ID, SELLER,
-            LocalDateTime.of(2018, 1, 8, 10, 0, 0 ), ORDER_TWO,
+            LocalDateTime.of(2018, 1, 8, 10, 0, 0), ORDER_TWO,
             FEDOR_PAVLOV, true);
     public static final PriceRequest PRICE_REQUEST_THREE = new PriceRequest(PRICE_REQUEST_THREE_ID, SELLER,
-            LocalDateTime.of(2018, 1, 9, 10, 0, 0 ), ORDER_THREE,
+            LocalDateTime.of(2018, 1, 9, 10, 0, 0), ORDER_THREE,
             DMITRY_NIKOLAEV, true);
     public static final PriceRequest PRICE_REQUEST_FOUR = new PriceRequest(PRICE_REQUEST_FOUR_ID, SELLER,
-            LocalDateTime.of(2018, 1, 10, 10, 0, 0 ), null,
+            LocalDateTime.of(2018, 1, 10, 10, 0, 0), null,
             DMITRY_NIKOLAEV, false);
 
     public static void assertMatch(PriceRequest actual, PriceRequest expected) {
-        assertThat(actual).isEqualToIgnoringGivenFields(expected, "products");
+        assertThat(actual).isEqualToIgnoringGivenFields(expected, "user", "order",
+                "client", "products");
     }
 
     public static void assertMatch(Iterable<PriceRequest> actual, PriceRequest... expected) {
@@ -47,14 +48,7 @@ public class PriceRequestTestData {
     }
 
     public static void assertMatch(Iterable<PriceRequest> actual, Iterable<PriceRequest> expected) {
-        assertThat(actual).usingElementComparatorIgnoringFields("products").isEqualTo(expected);
-    }
-
-    public static ResultMatcher contentJson(PriceRequest... expected) {
-        return content().json(writeIgnoreProps(Arrays.asList(expected), "products"));
-    }
-
-    public static ResultMatcher contentJson(PriceRequest expected) {
-        return content().json(writeIgnoreProps(expected, "product"));
+        assertThat(actual).usingElementComparatorIgnoringFields("user", "client", "order", "products")
+                .isEqualTo(expected);
     }
 }

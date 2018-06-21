@@ -42,8 +42,7 @@ public class OrderTestData {
             4000, false, null);
 
     public static void assertMatch(Order actual, Order expected) {
-        assertThat(actual).isEqualToIgnoringGivenFields(expected, "registered", "roles",
-                "priceRequests", "password");
+        assertThat(actual).isEqualToIgnoringGivenFields(expected, "priceRequests", "client");
     }
 
     public static void assertMatch(Iterable<Order> actual, Order... expected) {
@@ -51,14 +50,14 @@ public class OrderTestData {
     }
 
     public static void assertMatch(Iterable<Order> actual, Iterable<Order> expected) {
-        assertThat(actual).usingElementComparatorIgnoringFields("priceRequests").isEqualTo(expected);
+        assertThat(actual).usingElementComparatorIgnoringFields("priceRequests", "client").isEqualTo(expected);
     }
 
     public static ResultMatcher contentJson(Order... expected) {
-        return content().json(writeIgnoreProps(Arrays.asList(expected), "priseRequests"));
+        return content().json(writeIgnoreProps(Arrays.asList(expected), "priseRequests", "client"));
     }
 
     public static ResultMatcher contentJson(Order expected) {
-        return content().json(writeIgnoreProps(expected, "priceRequests"));
+        return content().json(writeIgnoreProps(expected, "priceRequests", "client"));
     }
 }
