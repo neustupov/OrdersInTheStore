@@ -43,7 +43,7 @@ public class Product extends AbstractBaseEntity{
     }
 
     public Product(Product p){
-        this(p.getPriceRequest(), p.getAddDate(), p.getPrice(), p.getType(), p.getModel(), p.getBrand());
+        this(p.getId(), p.getPriceRequest(), p.getAddDate(), p.getPrice(), p.getType(), p.getModel(), p.getBrand());
     }
 
     public Product(PriceRequest priceRequest, @NotNull LocalDate addDate, @NotNull int price, Type type, Model model,

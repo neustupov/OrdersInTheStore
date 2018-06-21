@@ -86,10 +86,7 @@ public class ClientServiceTest extends AbstractServiceTest{
                         98745663214L, null, null)),
                 ConstraintViolationException.class);
         validateRootCause(() -> service.create(new Client(ANDREY_IVANOV_ID, "Andrey", "Ivanov",
-                        987456L, null, null)),
-                ConstraintViolationException.class);
-        validateRootCause(() -> service.create(new Client(ANDREY_IVANOV_ID, "Andrey", "Ivanov",
-                        9874566321412312L, null, null)),
+                        null, null, null)),
                 ConstraintViolationException.class);
     }
 }

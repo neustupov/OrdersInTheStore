@@ -21,7 +21,6 @@ public class Client extends AbstractNamedEntity {
     private String lastName;
 
     @Column(name = "phone_number", nullable = false)
-    @Size(min = 10, max = 10)
     @NotNull
     private Long phoneNumber;
 
@@ -35,19 +34,17 @@ public class Client extends AbstractNamedEntity {
     }
 
     public Client(Client c) {
-        this(c.getLastName(), c.getPhoneNumber(), c.getPriceRequests(), c.getOrders());
+        this(c.getId(), c.getName(), c.getLastName(), c.getPhoneNumber(), c.getPriceRequests(), c.getOrders());
     }
 
-    public Client(@NotBlank @Size(min = 2, max = 120) @SafeHtml(groups = {View.Web.class}) String lastName,
-                  @NotNull Long phoneNumber, Set<PriceRequest> priceRequests, Set<Order> orders) {
+    public Client(String lastName, Long phoneNumber, Set<PriceRequest> priceRequests, Set<Order> orders) {
         this.lastName = lastName;
         this.phoneNumber = phoneNumber;
         this.priceRequests = priceRequests;
         this.orders = orders;
     }
 
-    public Client(Integer id, String name, @NotBlank @Size(min = 2, max = 120)
-    @SafeHtml(groups = {View.Web.class}) String lastName, @NotNull Long phoneNumber,
+    public Client(Integer id, String name, String lastName, Long phoneNumber,
                   Set<PriceRequest> priceRequests, Set<Order> orders) {
         super(id, name);
         this.lastName = lastName;

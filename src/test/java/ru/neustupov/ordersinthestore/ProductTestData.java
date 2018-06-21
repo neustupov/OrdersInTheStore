@@ -1,49 +1,46 @@
 package ru.neustupov.ordersinthestore;
 
-import org.springframework.test.web.servlet.ResultMatcher;
-import ru.neustupov.ordersinthestore.web.json.JsonUtil;
+import ru.neustupov.ordersinthestore.model.Product;
 
-import java.time.Instant;
+import java.time.LocalDate;
 import java.util.Arrays;
-import java.util.EnumSet;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static ru.neustupov.ordersinthestore.BrandTestData.*;
+import static ru.neustupov.ordersinthestore.ModelTestData.*;
+import static ru.neustupov.ordersinthestore.PriceRequestTestData.PRICE_REQUEST_ONE;
+import static ru.neustupov.ordersinthestore.PriceRequestTestData.PRICE_REQUEST_THREE;
+import static ru.neustupov.ordersinthestore.PriceRequestTestData.PRICE_REQUEST_TWO;
+import static ru.neustupov.ordersinthestore.TypeTestData.MOUSE;
+import static ru.neustupov.ordersinthestore.TypeTestData.TV;
+import static ru.neustupov.ordersinthestore.TypeTestData.WASHING_MACHINE;
 import static ru.neustupov.ordersinthestore.model.AbstractBaseEntity.START_SEQ;
-import static ru.neustupov.ordersinthestore.web.json.JsonUtil.writeIgnoreProps;
 
 public class ProductTestData {
 
-    public static final int SELLER_ID = START_SEQ + 27;
-    public static final int MANAGER_ID = START_SEQ + 28;
-    public static final int ADMIN_ID = START_SEQ + 29;
-    public static final int ADMIN_ID = START_SEQ + 30;
+    public static final int TV_SAMSUNG_40F6101_ID = START_SEQ + 27;
+    public static final int WM_LG_10B81_ID = START_SEQ + 28;
+    public static final int TV_AKAI_21D210_ID = START_SEQ + 29;
+    public static final int MOUSE_RAZER_MAXIMA_ID = START_SEQ + 30;
 
-    public static final User SELLER = new User(SELLER_ID, "Seller", "seller@yandex.ru", "seller", Date.from(Instant.now()), EnumSet.of(Role.ROLE_SELLER));
-    public static final User MANAGER = new User(MANAGER_ID, "Manager", "manager@yandex.ru", "manager", Date.from(Instant.now()), EnumSet.of(Role.ROLE_MANAGER));
-    public static final User ADMIN = new User(ADMIN_ID, "Admin", "admin@yandex.ru", "admin", Date.from(Instant.now()), EnumSet.of(Role.ROLE_ADMIN));
+    public static final Product TV_SAMSUNG_40F6101 = new Product(TV_SAMSUNG_40F6101_ID, PRICE_REQUEST_ONE,
+            LocalDate.of(2018, 1, 7), 10000, TV, F, SAMSUNG);
+    public static final Product WM_LG_10B81 = new Product(WM_LG_10B81_ID, PRICE_REQUEST_TWO,
+            LocalDate.of(2018, 1, 8), 5000, WASHING_MACHINE, B, LG);
+    public static final Product TV_AKAI_21D210 = new Product(TV_AKAI_21D210_ID, PRICE_REQUEST_THREE,
+            LocalDate.of(2018, 1, 9), 3000, TV, D, AKAI);
+    public static final Product MOUSE_RAZER_MAXIMA = new Product(MOUSE_RAZER_MAXIMA_ID, PRICE_REQUEST_THREE,
+            LocalDate.of(2018, 1, 9), 4000, MOUSE, MAXIMA, RAZER);
 
-    public static void assertMatch(User actual, User expected) {
-        assertThat(actual).isEqualToIgnoringGivenFields(expected, "registered", "roles", "priceRequests", "password");
+    public static void assertMatch(Product actual, Product expected) {
+        assertThat(actual).isEqualTo(expected);
     }
 
-    public static void assertMatch(Iterable<User> actual, User... expected) {
+    public static void assertMatch(Iterable<Product> actual, Product... expected) {
         assertMatch(actual, Arrays.asList(expected));
     }
 
-    public static void assertMatch(Iterable<User> actual, Iterable<User> expected) {
-        assertThat(actual).usingElementComparatorIgnoringFields("registered", "priceRequests", "password").isEqualTo(expected);
-    }
-
-    public static ResultMatcher contentJson(User... expected) {
-        return content().json(writeIgnoreProps(Arrays.asList(expected), "registered", "password"));
-    }
-
-    public static ResultMatcher contentJson(User expected) {
-        return content().json(writeIgnoreProps(expected, "registered", "password"));
-    }
-
-    public static String jsonWithPassword(User user, String passw) {
-        return JsonUtil.writeAdditionProps(user, "password", passw);
+    public static void assertMatch(Iterable<Product> actual, Iterable<Product> expected) {
+        assertThat(actual).isEqualTo(expected);
     }
 }

@@ -28,27 +28,27 @@ public class PriceRequestServiceImpl implements PriceRequestService{
         return checkNotFoundWithId(repository.get(id), id);
     }
 
-    @Cacheable("priceRequest")
+    @Cacheable("priceRequests")
     @Override
     public List<PriceRequest> getAll() {
         return repository.getAll();
     }
 
-    @CacheEvict(value = "priceRequest", allEntries = true)
+    @CacheEvict(value = "priceRequests", allEntries = true)
     @Override
     public PriceRequest create(PriceRequest priceRequest) {
         Assert.notNull(priceRequest, "priceRequest must not be null");
         return repository.save(priceRequest);
     }
 
-    @CacheEvict(value = "priceRequest", allEntries = true)
+    @CacheEvict(value = "priceRequests", allEntries = true)
     @Override
     public void update(PriceRequest priceRequest) {
         Assert.notNull(priceRequest, "priceRequest must not be null");
         checkNotFoundWithId(repository.save(priceRequest), priceRequest.getId());
     }
 
-    @CacheEvict(value = "priceRequest", allEntries = true)
+    @CacheEvict(value = "priceRequests", allEntries = true)
     @Override
     public void delete(int id) throws NotFoundException {
         checkNotFoundWithId(repository.delete(id), id);

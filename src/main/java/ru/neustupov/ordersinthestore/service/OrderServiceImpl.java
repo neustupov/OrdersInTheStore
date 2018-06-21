@@ -28,27 +28,27 @@ public class OrderServiceImpl implements OrderService {
         return checkNotFoundWithId(repository.get(id), id);
     }
 
-    @Cacheable("order")
+    @Cacheable("orders")
     @Override
     public List<Order> getAll() {
         return repository.getAll();
     }
 
-    @CacheEvict(value = "order", allEntries = true)
+    @CacheEvict(value = "orders", allEntries = true)
     @Override
     public Order create(Order order) {
         Assert.notNull(order, "order must not be null");
         return repository.save(order);
     }
 
-    @CacheEvict(value = "order", allEntries = true)
+    @CacheEvict(value = "orders", allEntries = true)
     @Override
     public void update(Order order) {
         Assert.notNull(order, "order must not be null");
         checkNotFoundWithId(repository.save(order), order.getId());
     }
 
-    @CacheEvict(value = "order", allEntries = true)
+    @CacheEvict(value = "orders", allEntries = true)
     @Override
     public void delete(int id) throws NotFoundException {
         checkNotFoundWithId(repository.delete(id), id);

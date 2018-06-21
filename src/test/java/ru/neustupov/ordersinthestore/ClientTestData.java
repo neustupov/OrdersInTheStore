@@ -29,18 +29,12 @@ public class ClientTestData {
     }
 
     public static void assertMatch(Client actual, Client expected) {
-        assertThat(actual).isEqualToIgnoringGivenFields(expected, "priceRequests", "orders");
+        assertThat(actual).isEqualToIgnoringGivenFields(expected, "priceRequests", "orders",
+                "phoneNumber");
     }
 
     public static void assertMatch(Iterable<Client> actual, Iterable<Client> expected) {
-        assertThat(actual).usingElementComparatorIgnoringFields("priceRequests", "orders").isEqualTo(expected);
-    }
-
-    public static ResultMatcher contentJson(Client... expected) {
-        return content().json(writeIgnoreProps(Arrays.asList(expected), "priceRequests", "orders"));
-    }
-
-    public static ResultMatcher contentJson(Client expected) {
-        return content().json(writeIgnoreProps(expected, "priceRequests", "orders"));
+        assertThat(actual).usingElementComparatorIgnoringFields("priceRequests", "orders",
+                "phoneNumber").isEqualTo(expected);
     }
 }

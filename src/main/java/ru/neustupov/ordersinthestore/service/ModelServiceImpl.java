@@ -28,27 +28,27 @@ public class ModelServiceImpl implements ModelService {
         return checkNotFoundWithId(repository.get(id), id);
     }
 
-    @Cacheable("model")
+    @Cacheable("models")
     @Override
     public List<Model> getAll() {
         return repository.getAll();
     }
 
-    @CacheEvict(value = "model", allEntries = true)
+    @CacheEvict(value = "models", allEntries = true)
     @Override
     public Model create(Model model) {
         Assert.notNull(model, "model must not be null");
         return repository.save(model);
     }
 
-    @CacheEvict(value = "model", allEntries = true)
+    @CacheEvict(value = "models", allEntries = true)
     @Override
     public void update(Model model) {
         Assert.notNull(model, "model must not be null");
         checkNotFoundWithId(repository.save(model), model.getId());
     }
 
-    @CacheEvict(value = "model", allEntries = true)
+    @CacheEvict(value = "models", allEntries = true)
     @Override
     public void delete(int id) throws NotFoundException {
         checkNotFoundWithId(repository.delete(id), id);

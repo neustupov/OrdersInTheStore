@@ -28,27 +28,27 @@ public class ClientServiceImpl implements ClientService {
         return checkNotFoundWithId(repository.get(id), id);
     }
 
-    @Cacheable("client")
+    @Cacheable("clients")
     @Override
     public List<Client> getAll() {
         return repository.getAll();
     }
 
-    @CacheEvict(value = "client", allEntries = true)
+    @CacheEvict(value = "clients", allEntries = true)
     @Override
     public Client create(Client client) {
         Assert.notNull(client, "client must not be null");
         return repository.save(client);
     }
 
-    @CacheEvict(value = "client", allEntries = true)
+    @CacheEvict(value = "clients", allEntries = true)
     @Override
     public void update(Client client) {
         Assert.notNull(client, "client must not be null");
         checkNotFoundWithId(repository.save(client), client.getId());
     }
 
-    @CacheEvict(value = "client", allEntries = true)
+    @CacheEvict(value = "clients", allEntries = true)
     @Override
     public void delete(int id) throws NotFoundException {
         checkNotFoundWithId(repository.delete(id), id);

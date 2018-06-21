@@ -28,27 +28,27 @@ public class ProductServiceImpl implements ProductService{
         return checkNotFoundWithId(repository.get(id), id);
     }
 
-    @Cacheable("product")
+    @Cacheable("products")
     @Override
     public List<Product> getAll() {
         return repository.getAll();
     }
 
-    @CacheEvict(value = "product", allEntries = true)
+    @CacheEvict(value = "products", allEntries = true)
     @Override
     public Product create(Product product) {
         Assert.notNull(product, "product must not be null");
         return repository.save(product);
     }
 
-    @CacheEvict(value = "product", allEntries = true)
+    @CacheEvict(value = "products", allEntries = true)
     @Override
     public void update(Product product) {
         Assert.notNull(product, "product must not be null");
         checkNotFoundWithId(repository.save(product), product.getId());
     }
 
-    @CacheEvict(value = "product", allEntries = true)
+    @CacheEvict(value = "products", allEntries = true)
     @Override
     public void delete(int id) throws NotFoundException {
         checkNotFoundWithId(repository.delete(id), id);

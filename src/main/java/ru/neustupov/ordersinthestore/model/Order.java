@@ -39,7 +39,7 @@ public class Order extends AbstractBaseEntity {
     }
 
     public Order(Order o) {
-        this(o.getClient(), o.getAddDateTime(), o.getPrepayment(), o.getAmount(), o.isReady()
+        this(o.getId(), o.getClient(), o.getAddDateTime(), o.getPrepayment(), o.getAmount(), o.isReady()
                 , o.getPriceRequests());
     }
 
