@@ -52,7 +52,7 @@ public class AdminRestControllerTest extends AbstractControllerTest {
                 .with(userHttpBasic(ADMIN)))
                 .andDo(print())
                 .andExpect(status().isNoContent());
-        assertMatch(userService.getAll(), MANAGER, ADMIN);
+        assertMatch(userService.getAll(),  ADMIN, MANAGER);
     }
 
     @Test
@@ -83,7 +83,7 @@ public class AdminRestControllerTest extends AbstractControllerTest {
         expected.setId(returned.getId());
 
         assertMatch(returned, expected);
-        assertMatch(userService.getAll(), ADMIN, expected, SELLER, MANAGER);
+        assertMatch(userService.getAll(), ADMIN, MANAGER, expected, SELLER);
     }
 
     @Test
@@ -126,7 +126,7 @@ public class AdminRestControllerTest extends AbstractControllerTest {
 
     @Test
     public void testCreateInvalid() throws Exception {
-        User expected = new User(null, null, "", "newPass",  EnumSet.of(Role.ROLE_SELLER, Role.ROLE_ADMIN));
+        User expected = new User(null, "Ivan", "", "newPass",  EnumSet.of(Role.ROLE_SELLER));
         ResultActions action = mockMvc.perform(post(REST_URL)
                 .contentType(MediaType.APPLICATION_JSON)
                 .with(userHttpBasic(ADMIN))
