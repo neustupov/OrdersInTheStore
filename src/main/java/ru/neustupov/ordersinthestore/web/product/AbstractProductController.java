@@ -1,37 +1,37 @@
-package ru.neustupov.ordersinthestore.web.type;
+package ru.neustupov.ordersinthestore.web.product;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import ru.neustupov.ordersinthestore.model.Type;
-import ru.neustupov.ordersinthestore.service.TypeService;
+import ru.neustupov.ordersinthestore.model.Product;
+import ru.neustupov.ordersinthestore.service.ProductService;
 
 import java.util.List;
 
 import static ru.neustupov.ordersinthestore.util.ValidationUtil.assureIdConsistent;
 import static ru.neustupov.ordersinthestore.util.ValidationUtil.checkNew;
 
-public abstract class AbstractTypeController {
+public class AbstractProductController {
 
     protected final Logger log = LoggerFactory.getLogger(getClass());
 
     @Autowired
-    private TypeService service;
+    private ProductService service;
 
-    public List<Type> getAll() {
+    public List<Product> getAll() {
         log.info("getAll");
         return service.getAll();
     }
 
-    public Type get(int id) {
+    public Product get(int id) {
         log.info("get {}", id);
         return service.get(id);
     }
 
-    public Type create(Type type) {
-        log.info("create {}", type);
-        checkNew(type);
-        return service.create(type);
+    public Product create(Product product) {
+        log.info("create {}", product);
+        checkNew(product);
+        return service.create(product);
     }
 
     public void delete(int id) {
@@ -39,9 +39,9 @@ public abstract class AbstractTypeController {
         service.delete(id);
     }
 
-    public void update(Type type, int id) {
-        log.info("update {} with id={}", type, id);
-        assureIdConsistent(type, id);
-        service.update(type);
+    public void update(Product product, int id) {
+        log.info("update {} with id={}", product, id);
+        assureIdConsistent(product, id);
+        service.update(product);
     }
 }

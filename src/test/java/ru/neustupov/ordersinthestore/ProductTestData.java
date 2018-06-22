@@ -1,11 +1,13 @@
 package ru.neustupov.ordersinthestore;
 
+import org.springframework.test.web.servlet.ResultMatcher;
 import ru.neustupov.ordersinthestore.model.Product;
 
 import java.time.LocalDate;
 import java.util.Arrays;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static ru.neustupov.ordersinthestore.BrandTestData.*;
 import static ru.neustupov.ordersinthestore.ModelTestData.*;
 import static ru.neustupov.ordersinthestore.PriceRequestTestData.PRICE_REQUEST_ONE;
@@ -15,6 +17,8 @@ import static ru.neustupov.ordersinthestore.TypeTestData.MOUSE;
 import static ru.neustupov.ordersinthestore.TypeTestData.TV;
 import static ru.neustupov.ordersinthestore.TypeTestData.WASHING_MACHINE;
 import static ru.neustupov.ordersinthestore.model.AbstractBaseEntity.START_SEQ;
+import static ru.neustupov.ordersinthestore.web.json.JsonUtil.writeIgnoreProps;
+import static ru.neustupov.ordersinthestore.web.json.JsonUtil.writeValue;
 
 public class ProductTestData {
 
@@ -42,5 +46,15 @@ public class ProductTestData {
 
     public static void assertMatch(Iterable<Product> actual, Iterable<Product> expected) {
         assertThat(actual).isEqualTo(expected);
+    }
+
+    public static ResultMatcher contentJson(Product... expected) {
+        return content().json(writeIgnoreProps(Arrays.asList(expected), "model", "priceRequest",
+                "brand", "type"));
+    }
+
+    public static ResultMatcher contentJson(Product expected) {
+        return content().json(writeIgnoreProps(expected, "model", "priceRequest",
+                "brand", "type"));
     }
 }

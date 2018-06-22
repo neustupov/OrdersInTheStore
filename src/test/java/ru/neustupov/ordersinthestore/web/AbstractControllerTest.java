@@ -14,6 +14,10 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.filter.CharacterEncodingFilter;
+import ru.neustupov.ordersinthestore.model.PriceRequest;
+import ru.neustupov.ordersinthestore.service.PriceRequestService;
+import ru.neustupov.ordersinthestore.service.ProductService;
+import ru.neustupov.ordersinthestore.service.TypeService;
 import ru.neustupov.ordersinthestore.service.UserService;
 import ru.neustupov.ordersinthestore.util.exception.ErrorType;
 
@@ -48,6 +52,15 @@ public abstract class AbstractControllerTest {
     protected UserService userService;
 
     @Autowired
+    protected TypeService typeService;
+
+    @Autowired
+    protected ProductService productService;
+
+    @Autowired
+    protected PriceRequestService priceRequestService;
+
+    @Autowired
     private WebApplicationContext webApplicationContext;
 
     @PostConstruct
@@ -62,6 +75,9 @@ public abstract class AbstractControllerTest {
     @Before
     public void setUp() {
         cacheManager.getCache("users").clear();
+        cacheManager.getCache("types").clear();
+        cacheManager.getCache("products").clear();
+        cacheManager.getCache("priceRequests").clear();
     }
 
     protected String getMessage(String code) {
