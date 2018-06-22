@@ -1,11 +1,15 @@
 package ru.neustupov.ordersinthestore;
 
+import org.springframework.test.web.servlet.ResultMatcher;
 import ru.neustupov.ordersinthestore.model.Type;
 
 import java.util.Arrays;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static ru.neustupov.ordersinthestore.model.AbstractBaseEntity.START_SEQ;
+import static ru.neustupov.ordersinthestore.web.json.JsonUtil.writeIgnoreProps;
+import static ru.neustupov.ordersinthestore.web.json.JsonUtil.writeValue;
 
 public class TypeTestData {
 
@@ -27,5 +31,13 @@ public class TypeTestData {
 
     public static void assertMatch(Type actual, Type expected) {
         assertThat(actual).isEqualTo(expected);
+    }
+
+    public static ResultMatcher contentJson(Type... expected) {
+        return content().json(writeValue(expected));
+    }
+
+    public static ResultMatcher contentJson(Type expected) {
+        return content().json(writeValue(expected));
     }
 }

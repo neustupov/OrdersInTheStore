@@ -51,4 +51,13 @@ public class PriceRequestTestData {
         assertThat(actual).usingElementComparatorIgnoringFields("user", "client", "order", "products")
                 .isEqualTo(expected);
     }
+
+    public static ResultMatcher contentJson(PriceRequest... expected) {
+        return content().json(writeIgnoreProps(Arrays.asList(expected), "user", "client", "order",
+                "products"));
+    }
+
+    public static ResultMatcher contentJson(PriceRequest expected) {
+        return content().json(writeIgnoreProps(expected, "user", "client", "order", "products"));
+    }
 }
