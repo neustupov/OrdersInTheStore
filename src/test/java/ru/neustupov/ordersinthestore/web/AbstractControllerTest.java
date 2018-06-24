@@ -15,10 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.filter.CharacterEncodingFilter;
 import ru.neustupov.ordersinthestore.model.PriceRequest;
-import ru.neustupov.ordersinthestore.service.PriceRequestService;
-import ru.neustupov.ordersinthestore.service.ProductService;
-import ru.neustupov.ordersinthestore.service.TypeService;
-import ru.neustupov.ordersinthestore.service.UserService;
+import ru.neustupov.ordersinthestore.service.*;
 import ru.neustupov.ordersinthestore.util.exception.ErrorType;
 
 import javax.annotation.PostConstruct;
@@ -61,6 +58,9 @@ public abstract class AbstractControllerTest {
     protected PriceRequestService priceRequestService;
 
     @Autowired
+    protected OrderService orderService;
+
+    @Autowired
     private WebApplicationContext webApplicationContext;
 
     @PostConstruct
@@ -78,6 +78,7 @@ public abstract class AbstractControllerTest {
         cacheManager.getCache("types").clear();
         cacheManager.getCache("products").clear();
         cacheManager.getCache("priceRequests").clear();
+        cacheManager.getCache("orders").clear();
     }
 
     protected String getMessage(String code) {
