@@ -4,6 +4,7 @@ import org.springframework.test.web.servlet.ResultMatcher;
 import ru.neustupov.ordersinthestore.model.Order;
 import java.time.LocalDateTime;
 import java.util.Arrays;
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
@@ -40,6 +41,9 @@ public class OrderTestData {
     public static final Order ORDER_SIX = new Order(ORDER_SIX_ID, DMITRY_NIKOLAEV,
             LocalDateTime.of(2018, 1, 15, 10, 0, 0 ), 1000,
             4000, false, null);
+
+    public static final List<Order> ORDERS = Arrays.asList(ORDER_ONE, ORDER_TWO, ORDER_THREE, ORDER_FOUR,
+            ORDER_FIVE, ORDER_SIX);
 
     public static void assertMatch(Order actual, Order expected) {
         assertThat(actual).isEqualToIgnoringGivenFields(expected, "priceRequests", "client");
