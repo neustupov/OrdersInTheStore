@@ -61,6 +61,9 @@ public abstract class AbstractControllerTest {
     protected OrderService orderService;
 
     @Autowired
+    protected ModelService modelService;
+
+    @Autowired
     private WebApplicationContext webApplicationContext;
 
     @PostConstruct
@@ -79,6 +82,7 @@ public abstract class AbstractControllerTest {
         cacheManager.getCache("products").clear();
         cacheManager.getCache("priceRequests").clear();
         cacheManager.getCache("orders").clear();
+        cacheManager.getCache("models").clear();
     }
 
     protected String getMessage(String code) {
