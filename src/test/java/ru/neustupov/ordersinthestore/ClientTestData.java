@@ -18,7 +18,7 @@ public class ClientTestData {
     public static final int DMITRY_NIKOLAEV_ID = START_SEQ + 5;
 
     public static final Client ANDREY_IVANOV = new Client(ANDREY_IVANOV_ID, "Andrey", "Ivanov",
-            98745663214L, null, null);
+            9214215265L, null, null);
     public static final Client FEDOR_PAVLOV = new Client(FEDOR_PAVLOV_ID, "Fedor", "Pavlov",
             9114525874L, null, null);
     public static final Client DMITRY_NIKOLAEV = new Client(DMITRY_NIKOLAEV_ID, "Dmitry", "Nikolaev",
@@ -36,5 +36,13 @@ public class ClientTestData {
     public static void assertMatch(Iterable<Client> actual, Iterable<Client> expected) {
         assertThat(actual).usingElementComparatorIgnoringFields("priceRequests", "orders",
                 "phoneNumber").isEqualTo(expected);
+    }
+
+    public static ResultMatcher contentJson(Client... expected) {
+        return content().json(writeIgnoreProps(Arrays.asList(expected), "priceRequests", "orders"));
+    }
+
+    public static ResultMatcher contentJson(Client expected) {
+        return content().json(writeIgnoreProps(expected, "priceRequests", "orders"));
     }
 }

@@ -1,11 +1,14 @@
 package ru.neustupov.ordersinthestore;
 
+import org.springframework.test.web.servlet.ResultMatcher;
 import ru.neustupov.ordersinthestore.model.Brand;
 
 import java.util.Arrays;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static ru.neustupov.ordersinthestore.model.AbstractBaseEntity.START_SEQ;
+import static ru.neustupov.ordersinthestore.web.json.JsonUtil.writeIgnoreProps;
 
 public class BrandTestData {
 
@@ -29,5 +32,13 @@ public class BrandTestData {
 
     public static void assertMatch(Brand actual, Brand expected) {
         assertThat(actual).isEqualTo(expected);
+    }
+
+    public static ResultMatcher contentJson(Brand... expected) {
+        return content().json(writeIgnoreProps(Arrays.asList(expected), ""));
+    }
+
+    public static ResultMatcher contentJson(Brand expected) {
+        return content().json(writeIgnoreProps(expected, ""));
     }
 }
