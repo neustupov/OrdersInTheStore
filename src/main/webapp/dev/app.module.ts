@@ -5,6 +5,8 @@ import {HttpModule} from "@angular/http";
 import {CalendarModule, DataTableModule, GrowlModule} from "primeng/primeng";
 import {DatePipe} from "@angular/common";
 import {routing} from "./app.routes";
+import {HeaderComponent} from "./component/auth/header.component";
+import {PriceRequestService} from "./service/price-request.service";
 
 @NgModule({
     imports: [BrowserModule, FormsModule, ReactiveFormsModule, HttpModule, routing, CalendarModule, DataTableModule,
@@ -18,7 +20,7 @@ import {routing} from "./app.routes";
         I18nPipe
     ],
     bootstrap: [AppComponent],
-    providers: [AuthService, AuthActivateGuard, MealService, UserService, ProfileService,
+    providers: [AuthService, AuthActivateGuard, PriceRequestService, UserService, ProfileService,
         I18nService, DateTimeTransformer, DatePipe, ExceptionService,
         {
             provide: APP_INITIALIZER,

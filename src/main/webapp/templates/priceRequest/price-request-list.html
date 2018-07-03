@@ -67,27 +67,27 @@
                             </template>
                         </p-column>
 
-                        <p-column field="description" header="{{'meals.description' | i18nPipe}}" [filter]="true"
+                        <p-column field="user" header="{{'priceRequest.user' | i18nPipe}}" [filter]="true"
                                   [sortable]="true"></p-column>
-                        <p-column field="calories" header="{{'meals.calories' | i18nPipe}}"
+                        <p-column field="order" header="{{'priceRequest.order' | i18nPipe}}"
                                   [sortable]="true"></p-column>
-                        <p-column field="description" header="{{'meals.description' | i18nPipe}}" [filter]="true"
+                        <p-column field="client" header="{{'priceRequest.client' | i18nPipe}}" [filter]="true"
                                   [sortable]="true"></p-column>
-                        <p-column field="description" header="{{'meals.description' | i18nPipe}}" [filter]="true"
+                        <p-column field="ready" header="{{'priceRequest.ready' | i18nPipe}}" [filter]="true"
                                   [sortable]="true"></p-column>
-                        <p-column field="description" header="{{'meals.description' | i18nPipe}}" [filter]="true"
+                        <p-column field="products" header="{{'priceRequest.products' | i18nPipe}}" [filter]="true"
                                   [sortable]="true"></p-column>
 
                         <p-column [style]="{width : '120px'}">
                             <template let-meal="rowData" pTemplate type="body">
-                                <button type="button" pButton (click)="deleteItem(meal)"
+                                <button type="button" pButton (click)="deleteItem(priceRequest)"
                                         label="{{'common.delete' | i18nPipe}}"></button>
                             </template>
                         </p-column>
                         <footer>
                             <div class="ui-helper-clearfix" style="width:100%">
                                 <button type="button" pButton icon="fa-plus" style="float:left"
-                                        (click)="showCreateModal()" label="{{'meals.add' | i18nPipe}}"></button>
+                                        (click)="showCreateModal()" label="{{'priceRequest.add' | i18nPipe}}"></button>
                             </div>
                         </footer>
                     </p-dataTable>
