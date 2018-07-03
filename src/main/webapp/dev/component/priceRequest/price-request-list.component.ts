@@ -3,16 +3,16 @@ import {Observable} from "rxjs/Observable";
 import {FormBuilder} from "@angular/forms";
 
 @Component({
-    templateUrl: '../../../templates/priceRequest/price-request.html'
+    templateUrl: '../../../templates/priceRequest/price-request-list.html'
 })
-export class PriceRequestComponent implements OnInit {
+export class PriceRequestListComponent implements OnInit {
 
     startDate: Date;
     endDate: Date;
     startTime: Date;
     endTime: Date;
 
-    priceRequestsHolder: Observable<PriceRequests[]>;
+    priceRequestsHolder: Observable<PriceRequest[]>;
 
     @ViewChild(EditPriceRequestComponent)
     private editPriceRequestChild: EditPriceRequestComponent;
