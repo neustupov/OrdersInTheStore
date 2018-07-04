@@ -1,8 +1,9 @@
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Component, EventEmitter, OnInit, Output} from "@angular/core";
+import {PriceRequest} from "../model/price-request.model";
 
 @Component({
-    templateUrl: '../../templates/meal/price-request-edit.html',
+    templateUrl: '../../templates/priceRequest/price-request-edit.html',
     selector: 'edit-price-request'
 })
 export class EditPriceRequestComponent implements OnInit {

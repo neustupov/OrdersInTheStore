@@ -1,10 +1,14 @@
 import {RouterModule, Routes} from "@angular/router";
 import {ModuleWithProviders} from "@angular/core";
+import {PriceRequestListComponent} from "./component/priceRequest/price-request-list.component";
+import {AuthActivateGuard} from "./shared/auth.activate.guard";
+import {ProfileComponent} from "./component/user/profile.component";
+
 const appRoutes: Routes = [
     {
         path: "",
         pathMatch: "full",
-        redirectTo: "/meal-list",
+        redirectTo: "/price-request-list",
     },
     {
         path: "login",
@@ -15,8 +19,8 @@ const appRoutes: Routes = [
         component: RegisterComponent
     },
     {
-        path: "meal-list",
-        component: MealListComponent,
+        path: "price-request-list",
+        component: PriceRequestListComponent,
         canActivate: [AuthActivateGuard],
     },
     {

@@ -8,7 +8,6 @@ export const registerPath: string = '/register';
 export const usersPath: string = '/rest/admin/users';
 export const i18nPath: string = '/i18n';
 
-
 export const headers: Headers = new Headers({
     'Content-Type': 'application/json'
 });

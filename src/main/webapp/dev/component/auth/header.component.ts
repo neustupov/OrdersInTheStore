@@ -1,6 +1,11 @@
 import {Component, OnInit} from "@angular/core";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
+import {AuthService} from "../../service/auth.service";
+import {ErrorModel} from "../model/error.model";
+import {I18nService} from "../../service/i18n.service";
+import {I18Enum} from "../model/i18.enum";
+import {ExceptionService} from "../../service/exception.service";
 
 @Component({
     templateUrl: '../../../templates/auth/header.html',

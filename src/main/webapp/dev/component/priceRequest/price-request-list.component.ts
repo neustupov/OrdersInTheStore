@@ -1,6 +1,9 @@
 import {Component, OnInit, ViewChild} from "@angular/core";
 import {Observable} from "rxjs/Observable";
 import {FormBuilder} from "@angular/forms";
+import {EditPriceRequestComponent} from "./price-request-edit.component";
+import {PriceRequestService} from "../../service/price-request.service";
+import {PriceRequest} from "../model/price-request.model";
 
 @Component({
     templateUrl: '../../../templates/priceRequest/price-request-list.html'
@@ -68,9 +71,5 @@ export class PriceRequestListComponent implements OnInit {
         this.startTime = null;
         this.endTime = null;
         this.updateList();
-    }
-
-    getRowClass(rowData: PriceRequest, rowIndex): string {
-        return rowData.exceed ? "exceeded" : null;
     }
 }
