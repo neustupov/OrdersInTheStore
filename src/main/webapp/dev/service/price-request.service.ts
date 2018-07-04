@@ -1,6 +1,8 @@
 import {Injectable} from "@angular/core";
-import {Http} from "@angular/http";
+import {Http, RequestOptionsArgs} from "@angular/http";
 import {Observable} from "rxjs/Observable";
+import {basePath, priceRequestPath, reqOptions, reqOptionsJson} from "../shared/config";
+import {PriceRequest} from "../component/model/price-request.model";
 
 @Injectable()
 export class PriceRequestService {
@@ -10,14 +12,14 @@ export class PriceRequestService {
     }
 
     loadAllPriceRequests(): Observable<PriceRequest[]> {
-        return this.http.get(basePath + mealPath, reqOptions)
+        return this.http.get(basePath + priceRequestPath, reqOptions)
             .map((res) => {
                 return this.mapResponse(res);
             });
     }
 
     deletePriceRequest(meal: PriceRequest): Observable<Response> {
-        return this.http.delete(basePath + mealPath + '/' + meal.id, reqOptions);
+        return this.http.delete(basePath + priceRequestPath + '/' + meal.id, reqOptions);
     }
 
     mapResponse(resp) {
@@ -34,12 +36,12 @@ export class PriceRequestService {
             return this.update(priceRequest);
         }
         else {
-            return this.http.post(basePath + mealPath, JSON.stringify(priceRequest), reqOptionsJson);
+            return this.http.post(basePath + priceRequestPath, JSON.stringify(priceRequest), reqOptionsJson);
         }
     }
 
     private update(priceRequest: PriceRequest): Observable<Response> {
-        return this.http.put(basePath + mealPath + '/' + userMeal.id, JSON.stringify(priceRequest), reqOptionsJson);
+        return this.http.put(basePath + priceRequestPath + '/' + priceRequest.id, JSON.stringify(priceRequest), reqOptionsJson);
     }
 
     getFilteredDataSet(startDate: Date, endDate: Date, startTime: Date, endTime: Date) {
@@ -61,7 +63,7 @@ export class PriceRequestService {
         var clone: RequestOptionsArgs = Object.assign({}, reqOptions);
         clone.search = getParams;
 
-        return this.http.get(basePath + mealPath + '/' + 'filter', clone).map((res) => {
+        return this.http.get(basePath + priceRequestPath + '/' + 'filter', clone).map((res) => {
             return this.mapResponse(res);
         });
     }
