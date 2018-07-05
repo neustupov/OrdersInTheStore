@@ -17,6 +17,13 @@ import {ProfileService} from "./service/profile.service";
 import {I18nService} from "./service/i18n.service";
 import {ExceptionService} from "./service/exception.service";
 import {I18Enum} from "./component/model/i18.enum";
+import {EntryComponent} from "./component/auth/entry.component";
+import {RegisterComponent} from "./component/user/register.component";
+import {UserService} from "./service/user.service";
+import {DateTimeTransformer} from "./shared/date-time.transformer";
+import {UserEditComponent} from "./component/user/user-edit.component";
+import {UserListComponent} from "./component/user/user-list.component";
+import {AppComponent} from "./app.component";
 
 @NgModule({
     imports: [BrowserModule, FormsModule, ReactiveFormsModule, HttpModule, routing, CalendarModule, DataTableModule,

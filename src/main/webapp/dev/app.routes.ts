@@ -3,6 +3,9 @@ import {ModuleWithProviders} from "@angular/core";
 import {PriceRequestListComponent} from "./component/priceRequest/price-request-list.component";
 import {AuthActivateGuard} from "./shared/auth.activate.guard";
 import {ProfileComponent} from "./component/user/profile.component";
+import {EntryComponent} from "./component/auth/entry.component";
+import {RegisterComponent} from "./component/user/register.component";
+import {UserListComponent} from "./component/user/user-list.component";
 
 const appRoutes: Routes = [
     {

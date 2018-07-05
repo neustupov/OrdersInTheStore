@@ -1,8 +1,9 @@
 import {Injectable} from "@angular/core";
-import {Http, RequestOptionsArgs} from "@angular/http";
+import {Http, Response, URLSearchParams, RequestOptionsArgs} from "@angular/http";
 import {Observable} from "rxjs/Observable";
 import {basePath, priceRequestPath, reqOptions, reqOptionsJson} from "../shared/config";
 import {PriceRequest} from "../component/model/price-request.model";
+import {DateTimeTransformer} from "../shared/date-time.transformer";
 
 @Injectable()
 export class PriceRequestService {

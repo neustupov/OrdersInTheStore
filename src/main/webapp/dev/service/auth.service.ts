@@ -2,7 +2,7 @@ import {Injectable} from "@angular/core";
 import {Http, Headers, RequestOptions} from "@angular/http";
 import {Router} from "@angular/router";
 import {basePath, loginPath} from "../shared/config";
-import {Observable} from "rxjs/Observable";
+import {Observable} from "rxjs/Rx";
 import {ExceptionService} from "./exception.service";
 import {ProfileService} from "./profile.service";
 import {User} from "../component/model/user.model";
