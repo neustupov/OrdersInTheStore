@@ -14,7 +14,6 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.filter.CharacterEncodingFilter;
-import ru.neustupov.ordersinthestore.model.PriceRequest;
 import ru.neustupov.ordersinthestore.service.*;
 import ru.neustupov.ordersinthestore.util.exception.ErrorType;
 
