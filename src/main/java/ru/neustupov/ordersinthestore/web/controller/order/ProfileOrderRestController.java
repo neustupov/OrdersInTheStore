@@ -1,4 +1,4 @@
-package ru.neustupov.ordersinthestore.web.controller.priceRequest;
+package ru.neustupov.ordersinthestore.web.controller.order;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -8,34 +8,35 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import ru.neustupov.ordersinthestore.View;
-import ru.neustupov.ordersinthestore.model.PriceRequest;
+import ru.neustupov.ordersinthestore.model.Order;
 
 import java.net.URI;
 import java.util.List;
 
 @RestController
-@RequestMapping(ProfilePriceRequestRestController.REST_URL)
-public class ProfilePriceRequestRestController extends AbstractPriceRequestController{
+@RequestMapping(ProfileOrderRestController.REST_URL)
+public class ProfileOrderRestController extends AbstractOrderController {
 
-    static final String REST_URL = "/rest/profile/priceRequests";
+    static final String REST_URL = "/rest/profile/orders";
 
     @Override
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<PriceRequest> getAll() {
+    public List<Order> getAll() {
         return super.getAll();
     }
 
     @Override
     @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public PriceRequest get(@PathVariable("id") int id) {
+    public Order get(@PathVariable("id") int id) {
         return super.get(id);
     }
 
+    @Secured("ROLE_MANAGER")
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<PriceRequest> createWithLocation(@Validated(View.Web.class)
-                                                           @RequestBody PriceRequest priceRequest) {
+    public ResponseEntity<Order> createWithLocation(@Validated(View.Web.class)
+                                                    @RequestBody Order order) {
 
-        PriceRequest created = super.create(priceRequest);
+        Order created = super.create(order);
 
         URI uriOfNewResource = ServletUriComponentsBuilder.fromCurrentContextPath()
                 .path(REST_URL + "/{id}")
@@ -45,9 +46,9 @@ public class ProfilePriceRequestRestController extends AbstractPriceRequestContr
     }
 
     @Override
+    @Secured("ROLE_MANAGER")
     @DeleteMapping(value = "/{id}")
     @ResponseStatus(value = HttpStatus.NO_CONTENT)
-    @Secured("ROLE_MANAGER")
     public void delete(@PathVariable("id") int id) {
         super.delete(id);
     }
@@ -55,7 +56,7 @@ public class ProfilePriceRequestRestController extends AbstractPriceRequestContr
     @Override
     @Secured("ROLE_MANAGER")
     @PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public void update(@Validated(View.Web.class) @RequestBody PriceRequest priceRequest, @PathVariable("id") int id) {
-        super.update(priceRequest, id);
+    public void update(@Validated(View.Web.class) @RequestBody Order order, @PathVariable("id") int id) {
+        super.update(order, id);
     }
 }
