@@ -57,12 +57,6 @@ public class ValidationUtil {
         return result;
     }
 
-    public static void checkTimeForVote(LocalTime stopTime){
-        if( LocalTime.now().isAfter(stopTime) ){
-            throw new DateTimeException("time is after Stop Time");
-        }
-    }
-
     public static String getMessage(Throwable e) {
         return e.getLocalizedMessage() != null ? e.getLocalizedMessage() : e.getClass().getName();
     }
