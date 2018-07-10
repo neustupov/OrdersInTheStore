@@ -12,8 +12,8 @@ services:
 
 # https://docs.travis-ci.com/user/database-setup/#PostgreSQL
 before_script:
-  - psql -c 'create database ordersInTheStore' -U postgres
-  - psql -c 'create user "admin"; grant all privileges on database ordersInTheStore to "admin"' -U postgres
+  - psql -c 'create database ordersinthestore' -U postgres
+  - psql -c 'create user "admin"; grant all privileges on database ordersinthestore to "admin"' -U postgres
 
 # https://docs.travis-ci.com/user/customizing-the-build#Building-Specific-Branches
 branches:
