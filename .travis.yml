@@ -13,7 +13,7 @@ services:
 # https://docs.travis-ci.com/user/database-setup/#PostgreSQL
 before_script:
   - psql -c 'create database ordersInTheStore' -U postgres
-  - psql -c 'create user "user"; grant all privileges on database ordersInTheStore to "user"' -U postgres
+  - psql -c 'create user "postgres"; grant all privileges on database ordersInTheStore to "postgres"' -U postgres
 
 # https://docs.travis-ci.com/user/customizing-the-build#Building-Specific-Branches
 branches:
