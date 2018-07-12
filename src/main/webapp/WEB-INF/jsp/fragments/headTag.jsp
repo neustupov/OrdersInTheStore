@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="webjars/datatables/1.10.16/css/dataTables.bootstrap4.min.css">
     <link rel="stylesheet" href="webjars/noty/3.1.0/demo/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="webjars/noty/3.1.0/lib/noty.css"/>
-    <link rel="shortcut icon" href="resources/images/new_order.png">
+    <link rel="shortcut icon" href="resources/images/new_order_black.png">
 
     <!--http://stackoverflow.com/a/24070373/548473-->
     <script type="text/javascript" src="webjars/jquery/3.3.1-1/jquery.min.js"></script>

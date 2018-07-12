@@ -6,11 +6,11 @@
 <nav class="navbar navbar-expand-md navbar-dark bg-dark py-0">
     <div class="container">
 
-        <sec:authorize access="hasRole('IS_AUTHENTICATED_REMEMBERED')">
+
             <a href="/priceRequests" class="navbar-brand">
                 <img src="resources/images/new_order.png">
                 <spring:message code="app.title"/></a>
-        </sec:authorize>
+
 
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
