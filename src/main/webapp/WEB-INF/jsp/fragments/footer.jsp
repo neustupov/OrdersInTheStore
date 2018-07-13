@@ -3,7 +3,7 @@
 <%--https://getbootstrap.com/docs/4.0/examples/sticky-footer/--%>
 
 <footer class="footer">
-    <div class="container">
+    <div class="container text-center">
         <span class="text-muted"><spring:message code="app.footer"/></span>
     </div>
 </footer>

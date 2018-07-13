@@ -8,28 +8,6 @@
 <body>
 <jsp:include page="fragments/bodyHeader.jsp"/>
 
-<!-- Modal -->
-<div class="modal fade bd-example-modal-lg" id="image-modal" tabindex="-1" role="dialog"
-     aria-labelledby="exampleModalCenterTitle"
-     aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">Просмотр изображения</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <img class="img-responsive center-block" src="" alt="">
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            </div>
-        </div>
-    </div>
-</div>
-
 <div class="jumbotron">
     <div class="container">
         <c:if test="${param.error}">
@@ -56,8 +34,48 @@
             </button>
         </p>
         <br/>
+        <div class="container">
+            <div class="lead">
+                &nbsp;&nbsp;&nbsp;<a href="https://github.com/neustupov/OrdersInTheStore">Java Enterprise проект</a> с
+                регистрацией/авторизацией и интерфейсом на основе ролей (SELLER, MANAGER, ADMIN).
+            </div>
+            <br/>
+            <div class="lead">
+                Продавец (SELLER) может добавлять запрос цены (PriceRequest) на определённый вид товара (Product),
+                добавлять клиентов (Client), добавлять новые товары (Type, Brand, Model).
+            </div>
+            <br/>
+            <div class="lead">
+                После обработки менеджером (MANAGER) запроса, продавец может составить заказ на один или несколько
+                товаров под определённого клиента. После добавления нового заказа продавец может распечатать бланк
+                заказа в формате PDF.
+            </div>
+            <br/>
+            <div class="lead">
+                Менеджер и Администратор могут редактировать и удалять запросы цен, товары, клиентов и заказы.
+                Администратор может создавать/редактировать/удалять дополнительных пользователей, а пользователи -
+                управлять своим профилем.
+            </div>
+            <br/>
+            <div class="lead">
+                Приложение работает через UI (по AJAX) и по REST интерфейсу с базовой авторизацией.
+                Весь REST интерфейс покрывается JUnit тестами, используя Spring MVC Test и Spring Security Test.
+            </div>
+        </div>
+    </div>
+    <br />
+    <div class="container">
+        <div class="row">
+            <div class="col.12">
+                <img src="resources/images/schema_order_actual_original.png" class="img-fluid">
+            </div>
+        </div>
+    </div>
+    <br />
+    <div class="lead text-center">
         <p>Стек технологий: <a href="http://projects.spring.io/spring-security/">Spring Security</a>,
-            <a href="https://docs.spring.io/spring/docs/current/spring-framework-reference/html/mvc.html">Spring MVC</a>,
+            <a href="https://docs.spring.io/spring/docs/current/spring-framework-reference/html/mvc.html">Spring
+                MVC</a>,
             <a href="http://projects.spring.io/spring-data-jpa/">Spring Data JPA</a>,
             <a href="http://spring.io/blog/2014/05/07/preview-spring-security-test-method-security">Spring Security
                 Test</a>,
@@ -78,35 +96,6 @@
             <a href="http://ned.im/noty/">jQuery notification</a>,
             <a href="http://getbootstrap.com/">Bootstrap</a>.</p>
     </div>
-    <div class="container">
-        <div class="row">
-            <div class="col">
-                <a href="#" class="thumbnail">
-                    <img src="resources/images/schema_order_actual.png" class="img-fluid" >
-                </a>
-            </div>
-            <div class="col">
-                <a href="#" class="thumbnail">
-                    <img src="resources/images/schema_order_actual.png" class="img-fluid">
-                </a>
-            </div>
-            <div class="col">
-                <a href="#" class="thumbnail">
-                    <img src="resources/images/schema_order_actual.png" class="img-fluid">
-                </a>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="container">
-    <div class="lead">
-        &nbsp;&nbsp;&nbsp;<a href="https://github.com/neustupov/votingForRestaurants">Java Enterprise проект</a> с
-        регистрацией/авторизацией и интерфейсом на основе ролей (USER, ADMIN).
-        Администратор может создавать/редактировать/удалять рестораны, меню, новые блюда, а пользователи -
-        управлять своим профилем и голосовать за понравившийся ресторан через UI (по AJAX) и по REST интерфейсу с
-        базовой авторизацией.
-        Весь REST интерфейс покрывается JUnit тестами, используя Spring MVC Test и Spring Security Test.
-    </div>
 </div>
 <jsp:include page="fragments/footer.jsp"/>
 <script type="text/javascript">
@@ -117,27 +106,6 @@
         $('input[name="username"]').val(username);
         $('input[name="password"]').val(password);
     }
-</script>
-<script>
-    // После загрузки DOM-дерева (страницы)
-    $(function() {
-        //при нажатии на ссылку, содержащую Thumbnail
-        $('a.thumbnail').click(function(e) {
-            //отменить стандартное действие браузера
-            e.preventDefault();
-            //присвоить атрибуту scr элемента img модального окна
-            //значение атрибута scr изображения, которое обёрнуто
-            //вокруг элемента a, на который нажал пользователь
-            $('#image-modal .modal-body img').attr('src', $(this).find('img').attr('src'));
-            //открыть модальное окно
-            $("#image-modal").modal('show');
-        });
-        //при нажатию на изображение внутри модального окна
-        //закрыть его (модальное окно)
-        $('#image-modal .modal-body img').on('click', function() {
-            $("#image-modal").modal('hide')
-        });
-    });
 </script>
 </body>
 </html>
