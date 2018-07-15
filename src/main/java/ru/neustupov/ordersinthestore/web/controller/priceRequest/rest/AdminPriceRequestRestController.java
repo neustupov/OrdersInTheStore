@@ -1,23 +1,23 @@
-package ru.neustupov.ordersinthestore.web.controller.priceRequest;
+package ru.neustupov.ordersinthestore.web.controller.priceRequest.rest;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.annotation.Secured;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import ru.neustupov.ordersinthestore.View;
 import ru.neustupov.ordersinthestore.model.PriceRequest;
+import ru.neustupov.ordersinthestore.web.controller.priceRequest.AbstractPriceRequestController;
 
 import java.net.URI;
 import java.util.List;
 
 @RestController
-@RequestMapping(ProfilePriceRequestRestController.REST_URL)
-public class ProfilePriceRequestRestController extends AbstractPriceRequestController{
+@RequestMapping(AdminPriceRequestRestController.REST_URL)
+public class AdminPriceRequestRestController extends AbstractPriceRequestController {
 
-    static final String REST_URL = "/rest/profile/priceRequests";
+    public static final String REST_URL = "/rest/admin/priceRequests";
 
     @Override
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
@@ -47,13 +47,11 @@ public class ProfilePriceRequestRestController extends AbstractPriceRequestContr
     @Override
     @DeleteMapping(value = "/{id}")
     @ResponseStatus(value = HttpStatus.NO_CONTENT)
-    @Secured("ROLE_MANAGER")
     public void delete(@PathVariable("id") int id) {
         super.delete(id);
     }
 
     @Override
-    @Secured("ROLE_MANAGER")
     @PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
     public void update(@Validated(View.Web.class) @RequestBody PriceRequest priceRequest, @PathVariable("id") int id) {
         super.update(priceRequest, id);

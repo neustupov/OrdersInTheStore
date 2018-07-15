@@ -7,6 +7,7 @@ import ru.neustupov.ordersinthestore.TestUtil;
 import ru.neustupov.ordersinthestore.model.PriceRequest;
 import ru.neustupov.ordersinthestore.util.exception.ErrorType;
 import ru.neustupov.ordersinthestore.web.AbstractControllerTest;
+import ru.neustupov.ordersinthestore.web.controller.priceRequest.rest.ProfilePriceRequestRestController;
 import ru.neustupov.ordersinthestore.web.json.JsonUtil;
 
 import java.time.LocalDateTime;
@@ -22,7 +23,6 @@ import static ru.neustupov.ordersinthestore.OrderTestData.ORDER_ONE;
 import static ru.neustupov.ordersinthestore.PriceRequestTestData.*;
 import static ru.neustupov.ordersinthestore.PriceRequestTestData.PRICE_REQUEST_FOUR;
 import static ru.neustupov.ordersinthestore.TestUtil.userHttpBasic;
-import static ru.neustupov.ordersinthestore.UserTestData.ADMIN;
 import static ru.neustupov.ordersinthestore.UserTestData.MANAGER;
 import static ru.neustupov.ordersinthestore.UserTestData.SELLER;
 

@@ -7,6 +7,7 @@ import ru.neustupov.ordersinthestore.TestUtil;
 import ru.neustupov.ordersinthestore.model.PriceRequest;
 import ru.neustupov.ordersinthestore.util.exception.ErrorType;
 import ru.neustupov.ordersinthestore.web.AbstractControllerTest;
+import ru.neustupov.ordersinthestore.web.controller.priceRequest.rest.AdminPriceRequestRestController;
 import ru.neustupov.ordersinthestore.web.json.JsonUtil;
 
 import java.time.LocalDateTime;
