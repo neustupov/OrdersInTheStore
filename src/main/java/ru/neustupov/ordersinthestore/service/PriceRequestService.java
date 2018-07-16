@@ -11,9 +11,13 @@ public interface PriceRequestService {
 
     List<PriceRequest> getAll();
 
+    List<PriceRequest> getAllWithUserAndClientAndProducts();
+
     PriceRequest create(PriceRequest priceRequest);
 
     void update(PriceRequest priceRequest);
 
     void delete(int id) throws NotFoundException;
+
+    void ready(int id, boolean ready);
 }

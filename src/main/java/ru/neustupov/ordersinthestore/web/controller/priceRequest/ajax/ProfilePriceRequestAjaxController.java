@@ -23,6 +23,6 @@ public class ProfilePriceRequestAjaxController extends AbstractPriceRequestContr
     @Override
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public List<PriceRequest> getAll() {
-        return super.getAll();
+        return super.getAllWithAllInformation();
     }
 }

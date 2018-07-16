@@ -28,6 +28,10 @@ public class DataJpaPriceRequestRepositoryImpl implements PriceRequestRepository
         return crudPriceRequestRepository.findAll();
     }
 
+    public List<PriceRequest> getAllWithUserAndClientAndProducts() {
+        return crudPriceRequestRepository.getAllWithUserAndClientAndProducts();
+    }
+
     @Override
     public boolean delete(int id) {
         return crudPriceRequestRepository.delete(id) != 0;

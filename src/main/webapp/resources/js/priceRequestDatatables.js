@@ -7,20 +7,35 @@ function updateTable() {
 
 $(function () {
     datatableApi = $("#priceRequestDatatable").DataTable(extendsOpts({
+        "paging": false,
         "columns": [
             {
-                "data": "name"
+                "data": "id"
             }, {
-                "data": "numberOfVotes"
+                "data": "user"
+            },
+            {
+                "data": "addDateTime",
+                "render": function (date, type, row) {
+                    if (type === "display") {
+                        return date.substring(0, 10);
+                    }
+                    return date;
+                }
             }, {
-                "orderable": false,
-                "defaultContent": "",
-                "render": renderTodaysBtn
+                "data": "client"
             }, {
-                "orderable": false,
-                "defaultContent": "",
-                "render": renderAllBtn
+                "data": "products"
             }, {
+                "data": "ready",
+                "render": function (data, type, row) {
+                    if (type === "display") {
+                        return "<input type='checkbox' " + (data ? "checked" : "") + " onclick='ready($(this)," + row.id + ");'/>";
+                    }
+                    return data;
+                }
+            },
+            {
                 "orderable": false,
                 "defaultContent": "",
                 "render": renderEditBtn
@@ -28,11 +43,7 @@ $(function () {
                 "orderable": false,
                 "defaultContent": "",
                 "render": renderDeleteBtn
-            }, {
-                "orderable": false,
-                "defaultContent": "",
-                "render": renderVoteBtn
-            }
+            }, {}
         ],
         "order": [
             [
@@ -43,23 +54,15 @@ $(function () {
     }));
 });
 
-function getAllVotes() {
-    document.location.href="/votes";
-}
-
-function redirectToMenus(restId) {
-    document.location.href="/menus?restId=" + restId;
-}
-
-function getTodaysMenuWithMeals(restId) {
-    document.location.href="getTodaysMenuWithMeals?restId=" + restId;
+/*function redirectToMenus(restId) {
+    document.location.href = "/menus?restId=" + restId;
 }
 
 function createVote(restId) {
     $.ajax({
         type: "POST",
         url: voteAjaxUrl,
-        data: {"restId":restId}
+        data: {"restId": restId}
     }).done(function () {
             updateTable();
             successNoty("common.saved");
@@ -67,23 +70,24 @@ function createVote(restId) {
     );
 }
 
-function renderTodaysBtn(data, type, row) {
-    if (type === "display") {
-        return "<a onclick='getTodaysMenuWithMeals(" + row.id + ");'>" +
-            "<span class='fa fa-cutlery' aria-hidden='true'></span></a>";
-    }
-}
-
 function renderAllBtn(data, type, row) {
     if (type === "display") {
         return "<a onclick='redirectToMenus(" + row.id + ");'>" +
             "<span class='fa fa-reorder' aria-hidden='true'></span></a>";
     }
-}
+}*/
 
-function renderVoteBtn(data, type, row) {
-    if (type === "display") {
-        return "<a onclick='createVote(" + row.id + ");'>" +
-            "<span class='fa fa-check' aria-hidden='true'></span></a>";
-    }
+function ready(chkbox, id) {
+    var ready = chkbox.is(":checked");
+//  https://stackoverflow.com/a/22213543/548473
+    $.ajax({
+        url: ajaxUrl + id,
+        type: "POST",
+        data: "ready=" + ready
+    }).done(function () {
+        chkbox.closest("tr").toggleClass("disabled");
+        successNoty(ready ? "common.ready" : "common.notReady");
+    }).fail(function () {
+        $(chkbox).prop("checked", !ready);
+    });
 }

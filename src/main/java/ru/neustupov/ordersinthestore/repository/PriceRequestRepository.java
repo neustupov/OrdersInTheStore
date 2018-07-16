@@ -13,6 +13,8 @@ public interface PriceRequestRepository {
 
     List<PriceRequest> getAll();
 
+    List<PriceRequest> getAllWithUserAndClientAndProducts();
+
     // false if not found
     boolean delete(int id);
 }

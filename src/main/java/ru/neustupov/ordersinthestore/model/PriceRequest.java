@@ -62,6 +62,25 @@ public class PriceRequest extends AbstractBaseEntity{
         this.ready = ready;
     }
 
+    public PriceRequest(@NotNull User user, @NotNull LocalDateTime addDateTime, Order order, Client client, boolean ready, Set<Product> products) {
+        this.user = user;
+        this.addDateTime = addDateTime;
+        this.order = order;
+        this.client = client;
+        this.ready = ready;
+        this.products = products;
+    }
+
+    public PriceRequest(Integer id, @NotNull User user, @NotNull LocalDateTime addDateTime, Order order, Client client, boolean ready, Set<Product> products) {
+        super(id);
+        this.user = user;
+        this.addDateTime = addDateTime;
+        this.order = order;
+        this.client = client;
+        this.ready = ready;
+        this.products = products;
+    }
+
     public User getUser() {
         return user;
     }
@@ -100,5 +119,13 @@ public class PriceRequest extends AbstractBaseEntity{
 
     public void setReady(boolean ready) {
         this.ready = ready;
+    }
+
+    public Set<Product> getProducts() {
+        return products;
+    }
+
+    public void setProducts(Set<Product> products) {
+        this.products = products;
     }
 }

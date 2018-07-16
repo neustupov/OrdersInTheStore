@@ -28,6 +28,11 @@ public class AbstractPriceRequestController {
         return service.get(id);
     }
 
+    public List<PriceRequest> getAllWithAllInformation() {
+        log.info("getAllWithAllInformation");
+        return service.getAllWithUserAndClientAndProducts();
+    }
+
     public PriceRequest create(PriceRequest priceRequest) {
         log.info("create {}", priceRequest);
         checkNew(priceRequest);
@@ -43,5 +48,10 @@ public class AbstractPriceRequestController {
         log.info("update {} with id={}", priceRequest, id);
         assureIdConsistent(priceRequest, id);
         service.update(priceRequest);
+    }
+
+    public void ready(int id, boolean ready) {
+        log.info((ready ? "ready " : "not ready ") + id);
+        service.ready(id, ready);
     }
 }

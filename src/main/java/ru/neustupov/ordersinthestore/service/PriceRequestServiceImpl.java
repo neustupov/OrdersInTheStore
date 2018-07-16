@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 import ru.neustupov.ordersinthestore.model.PriceRequest;
 import ru.neustupov.ordersinthestore.repository.PriceRequestRepository;
@@ -34,6 +35,12 @@ public class PriceRequestServiceImpl implements PriceRequestService{
         return repository.getAll();
     }
 
+    @Cacheable("priceRequests")
+    @Override
+    public List<PriceRequest> getAllWithUserAndClientAndProducts(){
+        return repository.getAllWithUserAndClientAndProducts();
+    }
+
     @CacheEvict(value = "priceRequests", allEntries = true)
     @Override
     public PriceRequest create(PriceRequest priceRequest) {
@@ -52,5 +59,14 @@ public class PriceRequestServiceImpl implements PriceRequestService{
     @Override
     public void delete(int id) throws NotFoundException {
         checkNotFoundWithId(repository.delete(id), id);
+    }
+
+    @CacheEvict(value = "priceRequests", allEntries = true)
+    @Override
+    @Transactional
+    public void ready(int id, boolean ready) {
+        PriceRequest priceRequest = get(id);
+        priceRequest.setReady(ready);
+        repository.save(priceRequest);
     }
 }
