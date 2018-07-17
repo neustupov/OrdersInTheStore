@@ -1,5 +1,6 @@
 package ru.neustupov.ordersinthestore.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
@@ -35,6 +36,7 @@ public class PriceRequest extends AbstractBaseEntity{
     @Column(name = "ready", nullable = false, columnDefinition = "bool default true")
     private boolean ready;
 
+    @JsonIgnoreProperties("priceRequest")
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "priceRequest")
     private Set<Product> products;
 

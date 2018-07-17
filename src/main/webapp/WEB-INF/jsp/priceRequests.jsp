@@ -13,35 +13,36 @@
 <div class="jumbotron">
     <div class="container">
         <div class="page-header">
-            <h3><spring:message code="restaurant.title"/></h3>
+            <h3><spring:message code="priceRequest.title"/></h3>
         </div>
         <br/>
         <br/>
         <button class="btn btn-primary mr-2" onclick="add()">
             <span class="fa fa-plus" aria-hidden="true"></span>
-            <spring:message code="restaurants.addRestaurant"/>
+            <spring:message code="priceRequest.add"/>
         </button>
         <button class="btn btn-primary mr-2" onclick="getAllVotes()">
             <span class="glyphicon" aria-hidden="true"></span>
-            <spring:message code="restaurant.viewAllVotes"/>
+            <spring:message code="common.orders"/>
         </button>
-        <table class="table table-striped display" id="restDatatable">
+        <table class="table table-striped display" id="priceRequestDatatable">
             <thead>
             <tr>
-                <th><spring:message code="common.name"/></th>
-                <th><spring:message code="restaurant.numberOfVotes"/></th>
-                <th><spring:message code="restaurant.todays"/></th>
-                <th><spring:message code="menu.all"/></th>
+                <th>id</th>
+                <th><spring:message code="priceRequest.user"/></th>
+                <th><spring:message code="priceRequest.dateTime"/></th>
+                <th><spring:message code="priceRequest.client"/></th>
+                <th><spring:message code="priceRequest.products"/></th>
+                <th><spring:message code="priceRequest.ready"/></th>
                 <th><spring:message code="common.edit"/></th>
                 <th><spring:message code="common.delete"/></th>
-                <th><spring:message code="vote.voting"/></th>
             </tr>
             </thead>
         </table>
     </div>
 </div>
 
-<div class="modal fade" tabindex="-1" id="editRow">
+<%--<div class="modal fade" tabindex="-1" id="editRow">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -70,13 +71,13 @@
             </div>
         </div>
     </div>
-</div>
+</div>--%>
 
 <jsp:include page="fragments/footer.jsp"/>
 </body>
 <jsp:include page="fragments/i18n.jsp"/>
 <script type="text/javascript">
-    i18n["addTitle"] = '<spring:message code="restaurant.add"/>';
-    i18n["editTitle"] = '<spring:message code="restaurant.edit"/>';
+    i18n["addTitle"] = '<spring:message code="common.add"/>';
+    i18n["editTitle"] = '<spring:message code="common.edit"/>';
 </script>
 </html>

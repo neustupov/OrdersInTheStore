@@ -11,7 +11,7 @@ import ru.neustupov.ordersinthestore.web.controller.priceRequest.AbstractPriceRe
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/ajax/profile/priceRequest")
+@RequestMapping(value = "/ajax/profile/priceRequests")
 public class ProfilePriceRequestAjaxController extends AbstractPriceRequestController {
 
     @Override

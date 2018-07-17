@@ -3,6 +3,8 @@ package ru.neustupov.ordersinthestore;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import ru.neustupov.ordersinthestore.model.User;
+import ru.neustupov.ordersinthestore.to.UserTo;
+import ru.neustupov.ordersinthestore.util.UserUtil;
 
 import static java.util.Objects.requireNonNull;
 
@@ -10,12 +12,12 @@ public class AuthorizedUser extends org.springframework.security.core.userdetail
 
     private static final long serialVersionUID = 1L;
 
-    private User user;
+    private UserTo userTo;
 
     public AuthorizedUser(User user) {
         super(user.getEmail(), user.getPassword(), user.isEnabled(), true,
                 true, true, user.getRoles());
-        this.user = user;
+        this.userTo = UserUtil.asTo(user);
     }
 
     public static AuthorizedUser safeGet() {
@@ -34,6 +36,23 @@ public class AuthorizedUser extends org.springframework.security.core.userdetail
     }
 
     public int getId() {
-        return user.getId();
+        return userTo.getId();
+    }
+
+    public static int id() {
+        return get().userTo.getId();
+    }
+
+    public UserTo getUserTo() {
+        return userTo;
+    }
+
+    public void update(UserTo newTo) {
+        userTo = newTo;
+    }
+
+    @Override
+    public String toString() {
+        return userTo.toString();
     }
 }

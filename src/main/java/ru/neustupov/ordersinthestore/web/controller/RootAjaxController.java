@@ -16,6 +16,11 @@ import javax.validation.Valid;
 @Controller
 public class RootAjaxController extends AbstractUserController{
 
+    @GetMapping("/")
+    public String root() {
+        return "redirect:priceRequests";
+    }
+
     @GetMapping(value = "/login")
     public String login() {
         return "login";
@@ -43,5 +48,10 @@ public class RootAjaxController extends AbstractUserController{
             model.addAttribute("register", true);
             return "profile";
         }
+    }
+
+    @GetMapping("/priceRequests")
+    public String restaurants() {
+        return "priceRequests";
     }
 }

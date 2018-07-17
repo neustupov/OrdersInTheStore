@@ -24,17 +24,17 @@ public class Product extends AbstractBaseEntity{
     @NotNull
     private int price;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "type_id", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     private Type type;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "model_id", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     private Model model;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "brand_id", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     private Brand brand;
@@ -113,5 +113,14 @@ public class Product extends AbstractBaseEntity{
 
     public void setBrand(Brand brand) {
         this.brand = brand;
+    }
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "type=" + type +
+                ", brand=" + brand +
+                ", model=" + model +
+                '}';
     }
 }

@@ -6,11 +6,9 @@
 <nav class="navbar navbar-expand-md navbar-dark bg-dark py-0">
     <div class="container">
 
-
             <a href="/priceRequests" class="navbar-brand">
                 <img src="resources/images/new_order.png">
                 <spring:message code="app.title"/></a>
-
 
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
