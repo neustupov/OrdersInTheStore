@@ -60,22 +60,22 @@ public class ProfileClientRestControllerTest extends AbstractControllerTest {
     }
 
     @Test
-    public void testUpdate500AccessIsDenied() throws Exception {
+    public void testUpdateAccessIsDenied() throws Exception {
         Client updated = new Client(DMITRY_NIKOLAEV);
         updated.setName("UpdatedName");
         mockMvc.perform(put(REST_URL + DMITRY_NIKOLAEV_ID)
                 .with(userHttpBasic(SELLER))
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(JsonUtil.writeValue(updated)))
-                .andExpect(status().is5xxServerError());
+                .andExpect(status().isForbidden());
     }
 
     @Test
-    public void testDelete500AccessIsDenied() throws Exception {
+    public void testDeleteAccessIsDenied() throws Exception {
         mockMvc.perform(delete(REST_URL + ANDREY_IVANOV_ID)
                 .with(userHttpBasic(SELLER)))
                 .andDo(print())
-                .andExpect(status().is5xxServerError());
+                .andExpect(status().isForbidden());
     }
 
     @Test

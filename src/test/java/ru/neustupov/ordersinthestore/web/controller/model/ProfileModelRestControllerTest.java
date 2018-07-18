@@ -47,11 +47,11 @@ public class ProfileModelRestControllerTest extends AbstractControllerTest {
     }
 
     @Test
-    public void testDelete500AccessIsDenied() throws Exception {
+    public void testDeleteAccessIsDenied() throws Exception {
         mockMvc.perform(delete(REST_URL + F_ID)
                 .with(userHttpBasic(SELLER)))
                 .andDo(print())
-                .andExpect(status().is5xxServerError());
+                .andExpect(status().isForbidden());
     }
 
     @Test
@@ -68,14 +68,14 @@ public class ProfileModelRestControllerTest extends AbstractControllerTest {
     }
 
     @Test
-    public void testUpdate500AccessIsDenied() throws Exception {
+    public void testUpdateAccessIsDenied() throws Exception {
         Model updated = new Model(F);
         updated.setName("UpdatedName");
         mockMvc.perform(put(REST_URL + F_ID)
                 .with(userHttpBasic(SELLER))
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(JsonUtil.writeValue(updated)))
-                .andExpect(status().is5xxServerError());
+                .andExpect(status().isForbidden());
     }
 
     @Test

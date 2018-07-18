@@ -45,11 +45,11 @@ public class ProfileBrandRestControllerTest extends AbstractControllerTest {
     }
 
     @Test
-    public void testDelete500AccessIsDenied() throws Exception {
+    public void testDeleteAccessIsDenied() throws Exception {
         mockMvc.perform(delete(REST_URL + LG_ID)
                 .with(userHttpBasic(SELLER)))
                 .andDo(print())
-                .andExpect(status().is5xxServerError());
+                .andExpect(status().isForbidden());
     }
 
     @Test
@@ -66,14 +66,14 @@ public class ProfileBrandRestControllerTest extends AbstractControllerTest {
     }
 
     @Test
-    public void testUpdate500AccessIsDenied() throws Exception {
+    public void testUpdateAccessIsDenied() throws Exception {
         Brand updated = new Brand(SAMSUNG);
         updated.setName("UpdatedName");
         mockMvc.perform(put(REST_URL + SAMSUNG_ID)
                 .with(userHttpBasic(SELLER))
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(JsonUtil.writeValue(updated)))
-                .andExpect(status().is5xxServerError());
+                .andExpect(status().isForbidden());
     }
 
     @Test

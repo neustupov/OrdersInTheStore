@@ -69,22 +69,22 @@ public class ProfileOrderRestControllerTest extends AbstractControllerTest {
     }
 
     @Test
-    public void testUpdate500AccessIsDenied() throws Exception {
+    public void testUpdateAccessIsDenied() throws Exception {
         Order updated = new Order(ORDER_ONE);
         updated.setReady(false);
         mockMvc.perform(put(REST_URL + ORDER_ONE_ID)
                 .with(userHttpBasic(SELLER))
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(JsonUtil.writeValue(updated)))
-                .andExpect(status().is5xxServerError());
+                .andExpect(status().isForbidden());
     }
 
     @Test
-    public void testDelete500AccessIsDenied() throws Exception {
+    public void testDeleteAccessIsDenied() throws Exception {
         mockMvc.perform(delete(REST_URL + ORDER_ONE_ID)
                 .with(userHttpBasic(SELLER)))
                 .andDo(print())
-                .andExpect(status().is5xxServerError());
+                .andExpect(status().isForbidden());
     }
 
     public void testCreate500AccessIsDenied() throws Exception {

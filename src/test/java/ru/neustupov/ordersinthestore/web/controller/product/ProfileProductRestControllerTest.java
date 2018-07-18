@@ -52,11 +52,11 @@ public class ProfileProductRestControllerTest extends AbstractControllerTest{
     }
 
     @Test
-    public void testDelete500AccessIsDenied() throws Exception {
+    public void testDeleteAccessIsDenied() throws Exception {
         mockMvc.perform(delete(REST_URL + TV_SAMSUNG_40F6101_ID)
                 .with(userHttpBasic(SELLER)))
                 .andDo(print())
-                .andExpect(status().is5xxServerError());
+                .andExpect(status().isForbidden());
     }
 
     @Test
@@ -73,14 +73,14 @@ public class ProfileProductRestControllerTest extends AbstractControllerTest{
     }
 
     @Test
-    public void testUpdate500AccessIsDenied() throws Exception {
+    public void testUpdateAccessIsDenied() throws Exception {
         Product updated = new Product(TV_AKAI_21D210);
         updated.setPrice(100500);
         mockMvc.perform(put(REST_URL + TV_AKAI_21D210_ID)
                 .with(userHttpBasic(SELLER))
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(JsonUtil.writeValue(updated)))
-                .andExpect(status().is5xxServerError());
+                .andExpect(status().isForbidden());
     }
 
     @Test
