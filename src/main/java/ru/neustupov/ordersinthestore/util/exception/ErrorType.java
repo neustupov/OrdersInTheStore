@@ -5,7 +5,8 @@ public enum ErrorType {
     DATA_NOT_FOUND("error.dataNotFound"),
     DATA_ERROR("error.dataError"),
     VALIDATION_ERROR("error.validationError"),
-    WRONG_REQUEST("error.wrongRequest");
+    WRONG_REQUEST("error.wrongRequest"),
+    ACCESS_DENIED("error.accessDenied");
 
     private final String errorCode;
 

@@ -1,4 +1,5 @@
 var ajaxUrl = "/ajax/profile/priceRequests/";
+var adminAjaxUrl = "/ajax/admin/priceRequests/";
 var datatableApi;
 
 function updateTable() {
@@ -33,7 +34,7 @@ $(function () {
                         var products = "";
                         data.forEach(function (item, i) {
                             products += (i+1) + ". " + item.type.name + " " + item.brand.name + " "
-                                + item.model.name + "<br ?> ";
+                                + item.model.name + "<br /> ";
                         });
                         return products;
                     } else {
@@ -66,6 +67,7 @@ $(function () {
             ]
         ]
     }));
+    makeEditable();
 });
 
 /*function redirectToMenus(restId) {
@@ -95,7 +97,7 @@ function ready(chkbox, id) {
     var ready = chkbox.is(":checked");
 //  https://stackoverflow.com/a/22213543/548473
     $.ajax({
-        url: ajaxUrl + id,
+        url: adminAjaxUrl + id,
         type: "POST",
         data: "ready=" + ready
     }).done(function () {

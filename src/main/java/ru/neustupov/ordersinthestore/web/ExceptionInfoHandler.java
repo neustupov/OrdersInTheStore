@@ -9,6 +9,7 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.validation.BindException;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -62,6 +63,12 @@ public class ExceptionInfoHandler {
     @ExceptionHandler({IllegalRequestDataException.class, MethodArgumentTypeMismatchException.class, HttpMessageNotReadableException.class})
     public ErrorInfo illegalRequestDataError(HttpServletRequest req, Exception e) {
         return logAndGetErrorInfo(req, e, false, VALIDATION_ERROR);
+    }
+
+    @ResponseStatus(value = HttpStatus.FORBIDDEN)  // 403
+    @ExceptionHandler(AccessDeniedException.class)
+    public ErrorInfo accessDeniedException(HttpServletRequest req, Exception e){
+        return logAndGetErrorInfo(req, e, false, ACCESS_DENIED);
     }
 
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)

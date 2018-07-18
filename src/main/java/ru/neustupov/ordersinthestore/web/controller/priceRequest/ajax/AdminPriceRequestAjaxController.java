@@ -8,7 +8,7 @@ import ru.neustupov.ordersinthestore.web.controller.priceRequest.AbstractPriceRe
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/ajax/admin/priceRequest")
+@RequestMapping(value = "/ajax/admin/priceRequests")
 public class AdminPriceRequestAjaxController extends AbstractPriceRequestController{
 
     @Override
