@@ -9,6 +9,7 @@ import ru.neustupov.ordersinthestore.model.Role;
 import ru.neustupov.ordersinthestore.model.User;
 import ru.neustupov.ordersinthestore.util.exception.ErrorType;
 import ru.neustupov.ordersinthestore.web.AbstractControllerTest;
+import ru.neustupov.ordersinthestore.web.controller.user.rest.AdminRestController;
 import ru.neustupov.ordersinthestore.web.json.JsonUtil;
 
 import java.time.Instant;

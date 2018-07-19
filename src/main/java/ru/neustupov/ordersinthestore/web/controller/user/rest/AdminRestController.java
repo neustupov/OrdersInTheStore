@@ -1,4 +1,4 @@
-package ru.neustupov.ordersinthestore.web.controller.user;
+package ru.neustupov.ordersinthestore.web.controller.user.rest;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -8,13 +8,14 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import ru.neustupov.ordersinthestore.View;
 import ru.neustupov.ordersinthestore.model.User;
+import ru.neustupov.ordersinthestore.web.controller.user.AbstractUserController;
 
 import java.net.URI;
 import java.util.List;
 
 @RestController
 @RequestMapping(AdminRestController.REST_URL)
-public class AdminRestController extends AbstractUserController{
+public class AdminRestController extends AbstractUserController {
 
     static final String REST_URL = "/rest/admin/users";
 
