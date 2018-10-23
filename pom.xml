@@ -39,7 +39,7 @@
         <postgresql.version>42.1.4</postgresql.version>
 
         <!--Json-->
-        <jackson-json.version>2.9.3</jackson-json.version>
+        <jackson-json.version>2.9.6</jackson-json.version>
 
         <!--Tools-->
         <ehcache.version>3.4.0</ehcache.version>
